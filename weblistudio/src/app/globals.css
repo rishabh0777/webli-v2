@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+
+.heading h1, h2, h3, h4 {
+  font-family: var(--font-bangers);
+}
+
+body{
+  font-family: var(--font-poppins);
+}
+
