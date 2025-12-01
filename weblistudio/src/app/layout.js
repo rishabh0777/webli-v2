@@ -1,5 +1,7 @@
 import { Bangers, Poppins } from "next/font/google";
 import "./globals.css";
+import Header from "./layout/header";
+import Footer from "./layout/footer";
 
 const bangers = Bangers({
   weight: "400",
@@ -59,7 +61,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${bangers.variable} ${poppins.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
