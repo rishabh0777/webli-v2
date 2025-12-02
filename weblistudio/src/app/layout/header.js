@@ -7,23 +7,27 @@ const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <nav className='fixed text-white w-full h-[14vh] top-0 left-0'>
-            <div className='flex items-center justify-between h-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6'>
-                <Image
-                    className='glow'
+        <header className='fixed text-white w-full h-[14vh] top-0 left-0'>
+            <div className='flex items-center justify-between h-full max-w-7xl mx-auto px-6 sm:px-4 lg:px-6 overflow-hidden'>
+                {/* logo */}
+                <div className='relative flex justify-center items-center cursor-pointer'>
+                    <Image
+                    className="glow block leading-none"
                     src="/logo/primaryLogoWhite.svg"
                     alt="Webli Studio Logo"
                     width={150}
                     height={50}
                 />
+                </div>
+
 
                 {/* toggle button with animation */}
-                <button 
+                <button
                     className='group relative cursor-pointer'
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     <div className='relative bg-yellow-300 text-black rounded-full flex items-center justify-center gap-2 md:w-[6vw] md:h-[5vh] group-hover:bg-black transition-all duration-300 overflow-hidden'>
-                        
+
                         <h3 className='tracking-[0.1vw] group-hover:text-yellow-300 transition-all duration-300'>
                             MENU
                         </h3>
@@ -34,8 +38,8 @@ const Header = () => {
                             {/* line-1 */}
                             <div
                                 className={`absolute w-3 h-0.5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 top-1/2
-                                    ${isOpen 
-                                        ? "bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45" 
+                                    ${isOpen
+                                        ? "bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45"
                                         : "bg-black top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2"
                                     }`}
                             ></div>
@@ -43,8 +47,8 @@ const Header = () => {
                             {/* line-2 */}
                             <div
                                 className={`absolute w-3 h-0.5 rounded-full transition-all duration-300
-                                    ${isOpen 
-                                        ? "opacity-0" 
+                                    ${isOpen
+                                        ? "opacity-0"
                                         : "opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                                     }`}
                             ></div>
@@ -52,8 +56,8 @@ const Header = () => {
                             {/* line-3 */}
                             <div
                                 className={`absolute w-3 h-0.5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 top-1/2
-                                    ${isOpen 
-                                        ? "bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45" 
+                                    ${isOpen
+                                        ? "bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45"
                                         : "bg-black top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"
                                     }`}
                             ></div>
@@ -62,7 +66,7 @@ const Header = () => {
                     </div>
                 </button>
             </div>
-        </nav>
+        </header>
     )
 }
 
