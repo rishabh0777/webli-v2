@@ -2,6 +2,8 @@ import { Bangers, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "./layout/header";
 import Footer from "./layout/footer";
+import { ReactLenis } from 'lenis/react';
+
 
 const bangers = Bangers({
   weight: "400",
@@ -59,11 +61,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${bangers.variable} ${poppins.variable} antialiased`}
+        className={`${bangers.variable} ${poppins.variable} antialiased ovrflow-x-hidden`}
       >
+        <ReactLenis root>
         <Header />
         {children}
         <Footer />
+        </ReactLenis>
       </body>
     </html>
   );

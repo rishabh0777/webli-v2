@@ -7,12 +7,12 @@ const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <header className='fixed text-white w-full h-[14vh] top-0 left-0'>
+        <header className='fixed text-white w-full h-[14vh] top-0 left-0 z-[999]'>
             <div className='flex items-center justify-between h-full max-w-7xl mx-auto px-6 sm:px-4 lg:px-6 overflow-hidden'>
                 {/* logo */}
                 <div className='relative flex justify-center items-center cursor-pointer'>
                     <Image
-                    className="glow block leading-none"
+                    className="block leading-none"
                     src="/logo/primaryLogoWhite.svg"
                     alt="Webli Studio Logo"
                     width={150}
@@ -26,7 +26,7 @@ const Header = () => {
                     className='group relative cursor-pointer'
                     onClick={() => setIsOpen(!isOpen)}
                 >
-                    <div className='relative bg-yellow-300 text-black rounded-full flex items-center justify-center gap-2 md:w-[6vw] md:h-[5vh] group-hover:bg-black transition-all duration-300 overflow-hidden'>
+                    <div className='relative bg-yellow-300 text-black rounded-full flex items-center justify-center gap-2 md:w-[6vw] md:h-[5vh] group-hover:bg-transparent transition-all duration-300 overflow-hidden'>
 
                         <h3 className='tracking-[0.1vw] group-hover:text-yellow-300 transition-all duration-300'>
                             MENU
