@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import React from 'react'
-import { InstagramIcon, LinkedinIcon, GithubIcon } from 'lucide-react';
+import { InstagramIcon, LinkedinIcon, GithubIcon, Coffee } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -28,12 +28,14 @@ const Footer = () => {
             </div>
             <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-white/80">
               <div class="flex gap-3">
-                <a href="#" class="text-purple-500 glow"><InstagramIcon size={16} /></a>
-                <a href="#" class="glow"><GithubIcon size={16} /></a>
-                <a href="#" class="text-blue-500 glow"><LinkedinIcon size={16} /></a>
+                <a href="#" class="text-purple-500 glow"><InstagramIcon size={20} /></a>
+                <a href="#" class="glow"><GithubIcon size={20} /></a>
+                <a href="#" class="text-blue-500 glow"><LinkedinIcon size={20} /></a>
               </div>
               <span class="hidden sm:inline text-white/70">•</span>
-              <span>© <span id="year"></span> Webli Studio. Made with gradients &amp; coffee.</span>
+              <span>© <span id="year">{
+                new Date().getFullYear()
+                } Webli Studio.</span> Made with gradients &amp; <Coffee size={16} className="inline-block mb-[2px] ml-1 text-yellow-200" /> </span>
             </div>
           </div>
         </div>
