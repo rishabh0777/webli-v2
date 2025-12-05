@@ -93,9 +93,9 @@ export default function AboutPreview() {
       className="relative w-full min-h-[150vh] text-white pt-20 pb-32 px-10 sm:px-20 lg:px-36"
     >
       <div className="absolute top-[10vh] left-[20vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
-      <div className="absolute top-[40vh] left-[60vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
+      <div className="absolute top-[35vh] left-[60vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
       <div className="absolute top-[60vh] left-[30vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
-      <div className="absolute top-[80vh] left-[60vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
+      <div className="absolute top-[85vh] left-[60vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
       {/* Paragraph 1 */}
       <div 
         ref={(el) => (blocksRef.current[0] = el)}
