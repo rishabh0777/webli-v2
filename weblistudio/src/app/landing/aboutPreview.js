@@ -99,7 +99,7 @@ export default function AboutPreview() {
       {/* Paragraph 1 */}
       <div 
         ref={(el) => (blocksRef.current[0] = el)}
-        className="w-[80vw] sm:w-[30vw] min-h-[20vh] absolute top-[10vh] left-[10vw] text-lg sm:text-sm leading-relaxed text-white/90"
+        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[10vh] left-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[0]}
@@ -108,7 +108,7 @@ export default function AboutPreview() {
       {/* Paragraph 2 */}
       <div
         ref={(el) => (blocksRef.current[1] = el)}
-        className="w-[80vw] sm:w-[30vw] min-h-[20vh] absolute top-[35vh] right-[10vw] text-lg sm:text-sm leading-relaxed text-white/90"
+        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[35vh] right-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[1]}
@@ -117,7 +117,7 @@ export default function AboutPreview() {
       {/* Paragraph 3 */}
       <div
         ref={(el) => (blocksRef.current[2] = el)}
-        className="w-[80vw] sm:w-[30vw] min-h-[20vh] absolute top-[60vh] left-[10vw] text-lg sm:text-sm leading-relaxed text-white/90"
+        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[60vh] left-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[2]}
@@ -125,7 +125,7 @@ export default function AboutPreview() {
 
       <div
         ref={(el) => (blocksRef.current[3] = el)}
-        className="w-[80vw] sm:w-[30vw] min-h-[20vh] absolute top-[85vh] right-[10vw] text-lg sm:text-sm leading-relaxed text-white/90"
+        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[85vh] right-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[3]}
