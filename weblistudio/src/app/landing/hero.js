@@ -163,10 +163,10 @@ export default function Hero() {
                   🚀 Start your project
                 </button>
                 <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-xs sm:text-sm font-medium text-black py-2.5 sm:py-3 px-4 sm:px-5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-yellow-200 transition-all duration-150">
-                  
+
                   🎉 View showcase
                 </button>
-                
+
               </div>
 
               <div className="flex flex-wrap gap-4 items-center text-xs sm:text-sm text-slate-500">
@@ -174,7 +174,7 @@ export default function Hero() {
                   <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-yellow-300 to-pink-400 border border-white shadow-sm" />
                   <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 border border-white shadow-sm" />
                   <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-emerald-300 to-cyan-400 border border-white shadow-sm" />
-                  
+
                 </div>
                 <span className="inline-flex items-center text-xs sm:text-sm text-white/80">
                   <span className="mr-1.5 text-base leading-none">⚡</span>
