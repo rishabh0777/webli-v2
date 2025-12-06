@@ -2,6 +2,7 @@ import Image from "next/image";
 import Hero from "./landing/hero";
 import AboutPreview from "./landing/aboutPreview";
 import ServicePreview from "./landing/servicePreview";
+import PortfolioPreview from "./landing/portfolioPreview";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <AboutPreview />
       <ServicePreview />
+      <PortfolioPreview />
     </main>
   );
 }
