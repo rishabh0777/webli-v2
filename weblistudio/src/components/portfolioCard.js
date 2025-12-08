@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function PortfolioCard({ project }) {
   return (
-    <article className="group relative rounded-3xl bg-white border border-slate-100 shadow-[0_18px_45px_rgba(15,23,42,0.06)] overflow-hidden">
+    <article className="group relative rounded-3xl bg-white border border-slate-100 shadow-yellow-500/30 shadow-lg hover:shadow-yellow-500/50 hover:shadow-xl overflow-hidden">
       <div className="relative">
         {/* Background Wrapper */}
         <div className="aspect-[4/3] bg-gradient-to-tr from-white via-yellow-300 to-yellow-100 flex items-center justify-center p-4 sm:p-5">

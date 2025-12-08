@@ -14,7 +14,7 @@ export default function ServiceCard({
 }) {
   return (
     <div
-      className={`relative rounded-2xl border p-6 overflow-hidden group transition-all duration-500 ${gradient}`}
+      className={`relative shadow-yellow-500/30 shadow-lg hover:shadow-yellow-500/50 hover:shadow-xl rounded-2xl border p-6 overflow-hidden group transition-all duration-500 ${gradient}`}
     >
       {/* Blob */}
       <div

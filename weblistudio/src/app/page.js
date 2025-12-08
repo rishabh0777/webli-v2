@@ -4,6 +4,7 @@ import AboutPreview from "./landing/aboutPreview";
 import ServicePreview from "./landing/servicePreview";
 import PortfolioPreview from "./landing/portfolioPreview";
 import TestimonialPreview from "./landing/testimonialPreview";
+import CTA from "./landing/CTA";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <ServicePreview />
       <PortfolioPreview />
       <TestimonialPreview />
+      <CTA />
     </main>
   );
 }

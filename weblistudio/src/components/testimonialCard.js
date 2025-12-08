@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function TestimonialCard({ testimonial }) {
   return (
-    <article className="relative rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-white border border-slate-100 p-4 sm:p-5 overflow-hidden">
+    <article className="relative shadow-yellow-500/30 shadow-lg hover:shadow-yellow-500/50 hover:shadow-xl rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-white border border-slate-100 p-4 sm:p-5 overflow-hidden">
       <div className="absolute -top-4 -right-4 h-14 w-14 rounded-[40%] bg-gradient-to-tr from-purple-400 via-pink-400 to-yellow-300 opacity-60 blur-lg animate-[bounce_18s_ease-in-out_infinite_alternate]"></div>
       <div className="flex items-start gap-3">
         <Image
