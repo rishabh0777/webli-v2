@@ -10,21 +10,21 @@ export default function PortfolioPreview() {
 
   
     return (
-        <section id="showcase" class="relative py-12 sm:py-16 lg:py-20">
-          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10">
+        <section id="showcase" className="relative py-12 sm:py-16 lg:py-20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10">
               <div>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white">
                   Little websites,
-                  <span class="bg-gradient-to-r from-yellow-100 via-yellow-300 to-white bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-yellow-100 via-yellow-300 to-white bg-clip-text text-transparent">
                     big feelings.
                   </span>
                 </h2>
-                <p class="mt-2 text-base sm:text-lg text-white/80 max-w-xl">
+                <p className="mt-2 text-base sm:text-lg text-white/80 max-w-xl">
                   Hover, scroll, tap — everything reacts. These projects are tiny playgrounds of motion and color for modern internet brands.
                 </p>
               </div>
-              <button class="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-300 via-white to-yellow-100 border border-slate-200 text-xs sm:text-sm font-medium text-slate-800 py-2.5 px-4 shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-200 transition-all duration-150">
+              <button className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-300 via-white to-yellow-100 border border-slate-200 text-xs sm:text-sm font-medium text-slate-800 py-2.5 px-4 shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-200 transition-all duration-150">
                 View Portfolio
               </button>
             </div>

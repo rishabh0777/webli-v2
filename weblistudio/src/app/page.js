@@ -3,6 +3,7 @@ import Hero from "./landing/hero";
 import AboutPreview from "./landing/aboutPreview";
 import ServicePreview from "./landing/servicePreview";
 import PortfolioPreview from "./landing/portfolioPreview";
+import TestimonialPreview from "./landing/testimonialPreview";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <AboutPreview />
       <ServicePreview />
       <PortfolioPreview />
+      <TestimonialPreview />
     </main>
   );
 }
