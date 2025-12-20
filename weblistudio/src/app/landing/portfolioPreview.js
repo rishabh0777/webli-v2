@@ -24,9 +24,14 @@ export default function PortfolioPreview() {
                   Hover, scroll, tap — everything reacts. These projects are tiny playgrounds of motion and color for modern internet brands.
                 </p>
               </div>
-              <button className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-300 via-white to-yellow-100 border border-slate-200 text-xs sm:text-sm font-medium text-slate-800 py-2.5 px-4 shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-200 transition-all duration-150">
-                View Portfolio
-              </button>
+              <div className="text-center mt-10">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 text-white/90 hover:text-black md:text-base text-[3vw] border border-white/20 md:px-6 md:py-2 px-16 py-3 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-100 transition whitespace-nowrap about-cta-btn"
+          >
+            View All Services <span className="text-[4.5vw] sm:text-base">→</span>
+          </Link>
+        </div>
             </div>
 
             

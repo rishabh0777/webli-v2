@@ -105,7 +105,7 @@ export default function Hero() {
 
   return (
     <main className="flex-1">
-      <section className="relative overflow-hidden pt-5">
+      <section className="relative overflow-hidden pt-[8vh] md:pt-5">
         {/* Floating gradient blobs background */}
         <div className="pointer-events-none absolute inset-0 -z-10">
 
@@ -141,14 +141,14 @@ export default function Hero() {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             {/* Hero text */}
             <div className="space-y-6 sm:space-y-7">
-              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-2.5 py-1 shadow-sm shadow-slate-100/70 backdrop-blur">
+              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-3 py-2 shadow-sm shadow-slate-100/70 backdrop-blur">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-gradient-to-br from-yellow-300 via-pink-400 to-blue-500 animate-[pulse_1.5s_ease-in-out_infinite]"></span>
                 <span className="text-xs font-medium text-black/90">MERN + Animated Web Studio for Modern Brands</span>
               </div>
 
               <div className="space-y-2">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-tight">
-                  <span className="text-3xl">Webli Studio — </span>We Build.
+                <h1 className="text-4xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-tight">
+                  <span className="md:text-3xl text-xl">Webli Studio — </span>We Build.
                   <span className="block bg-gradient-to-r from-yellow-400 via-yellow-100 to-white bg-clip-text text-transparent">
                     You Launch.
                   </span>

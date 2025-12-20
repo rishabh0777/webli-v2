@@ -90,7 +90,7 @@ export default function AboutPreview() {
   return (
     <main
       ref={sectionRef}
-      className="relative w-full min-h-[150vh] text-white pt-20 pb-32 px-10 sm:px-20 lg:px-36"
+      className="relative w-full min-h-[140vh] text-white pt-20 pb-10 px-8 sm:px-20 lg:px-36"
     >
       <div className="absolute top-[10vh] left-[20vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
       <div className="absolute top-[35vh] left-[60vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
@@ -99,7 +99,7 @@ export default function AboutPreview() {
       {/* Paragraph 1 */}
       <div 
         ref={(el) => (blocksRef.current[0] = el)}
-        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[10vh] left-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
+        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[10vh] left-8 sm:left-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[0]}
@@ -108,7 +108,7 @@ export default function AboutPreview() {
       {/* Paragraph 2 */}
       <div
         ref={(el) => (blocksRef.current[1] = el)}
-        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[35vh] right-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
+        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[35vh] right-8 sm:right-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[1]}
@@ -117,7 +117,7 @@ export default function AboutPreview() {
       {/* Paragraph 3 */}
       <div
         ref={(el) => (blocksRef.current[2] = el)}
-        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[60vh] left-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
+        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[60vh] left-8 sm:left-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[2]}
@@ -125,19 +125,19 @@ export default function AboutPreview() {
 
       <div
         ref={(el) => (blocksRef.current[3] = el)}
-        className="w-[40vw] sm:w-[30vw] min-h-[20vh] absolute top-[85vh] right-[10vw] text-[2.4vw] sm:text-sm leading-relaxed text-white/90"
+        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[85vh] right-8 sm:right-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
       >
         
         {aboutTexts[3]}
       </div>
 
       {/* CTA Button */}
-      <div className="absolute bottom-[20vh] left-1/2 transform -translate-x-1/2 text-center mt-10">
+      <div className="absolute bottom-[20vh] left-1/2 transform -translate-x-1/2 text-center ">
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-black text-base border border-white/20 px-6 py-2 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-100 transition"
+            className="inline-flex items-center gap-2 text-white/90 hover:text-black md:text-base text-[3vw] border border-white/20 md:px-6 md:py-2 px-16 py-3 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-100 transition whitespace-nowrap about-cta-btn"
           >
-            Learn more about us →
+            Learn more about us <span className="text-[4.5vw] sm:text-base">→</span>
           </Link>
         </div>
     </main>
