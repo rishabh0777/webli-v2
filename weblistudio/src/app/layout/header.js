@@ -2,9 +2,11 @@
 
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Link from "next/link";
+
+import { ArrowBigRight, Instagram, Github, Linkedin } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,23 +14,26 @@ const Header = () => {
   const btnRef = useRef(null);
   const overlayRef = useRef(null);
   const tl = useRef(null);
-  const contentTl = useRef(null);
 
-  // Overlay content refs
-  const descRef = useRef(null);
-  const menuItemsRef = useRef([]);
-  const socialItemsRef = useRef([]);
+  // Content refs
+  const leftRef = useRef(null);
+  const menuRefs = useRef([]);
+  const socialRefs = useRef([]);
   const footerRef = useRef(null);
+  const contentTl = useRef(null);
+  const titleRef = useRef(null);
+  const paraRef = useRef(null);
 
-  const addToMenuRefs = (el) => {
-    if (el && !menuItemsRef.current.includes(el)) {
-      menuItemsRef.current.push(el);
+
+  const addMenuRef = (el) => {
+    if (el && !menuRefs.current.includes(el)) {
+      menuRefs.current.push(el);
     }
   };
 
-  const addToSocialRefs = (el) => {
-    if (el && !socialItemsRef.current.includes(el)) {
-      socialItemsRef.current.push(el);
+  const addSocialRef = (el) => {
+    if (el && !socialRefs.current.includes(el)) {
+      socialRefs.current.push(el);
     }
   };
 
@@ -43,25 +48,15 @@ const Header = () => {
       pointerEvents: "none",
     });
 
-    // Button initial state
-    gsap.set(btnRef.current.children[0], { opacity: 0, x: "50%" }); // Close
-    gsap.set(btnRef.current.children[1], { opacity: 1, x: "0%" });  // Menu
+    gsap.set(btnRef.current.children[0], { opacity: 0, x: "50%" });
+    gsap.set(btnRef.current.children[1], { opacity: 1, x: "0%" });
 
-    // Overlay content initial state
-    gsap.set([descRef.current, footerRef.current], {
-      opacity: 0,
-      y: 20,
-    });
+    // initial hidden states
+    gsap.set(leftRef.current, { opacity: 0, y: 40 });
+    gsap.set(menuRefs.current, { opacity: 0, x: 40 });
+    gsap.set(socialRefs.current, { opacity: 0, y: 20 });
+    gsap.set(footerRef.current, { opacity: 0, y: 20 });
 
-    gsap.set(menuItemsRef.current, {
-      opacity: 0,
-      y: 30,
-    });
-
-    gsap.set(socialItemsRef.current, {
-      opacity: 0,
-      x: 20,
-    });
   }, []);
 
   /* ---------------- Overlay + Button Animation ---------------- */
@@ -79,7 +74,6 @@ const Header = () => {
 
     if (isOpen) {
       tl.current
-        // MENU → CLOSE
         .to(menuText, {
           opacity: 0,
           x: "50%",
@@ -93,10 +87,10 @@ const Header = () => {
             x: "0%",
             duration: 0.3,
             ease: "power2.out",
+            color: "#000",
           },
           "<"
         )
-        // OVERLAY OPEN
         .to(
           overlayRef.current,
           {
@@ -111,7 +105,6 @@ const Header = () => {
         );
     } else {
       tl.current
-        // CLOSE → MENU
         .to(closeText, {
           opacity: 0,
           x: "50%",
@@ -128,7 +121,6 @@ const Header = () => {
           },
           "<"
         )
-        // OVERLAY CLOSE
         .to(
           overlayRef.current,
           {
@@ -146,49 +138,75 @@ const Header = () => {
     tl.current.play();
   }, [isOpen]);
 
-  /* ---------------- Overlay Inner Content Animation ---------------- */
+  /* ---------------- Overlay Content Animation (RESTART EVERY OPEN) ---------------- */
   useGSAP(() => {
-    if (!overlayRef.current) return;
+  if (!contentTl.current) {
+    contentTl.current = gsap.timeline({ paused: true });
+  }
 
-    if (!contentTl.current) {
-      contentTl.current = gsap.timeline({ paused: true });
-    }
+  if (isOpen) {
+    // 🔁 RESET EVERY OPEN
+    gsap.set([titleRef.current, paraRef.current], {
+      autoAlpha: 0,
+      y: 30,
+    });
+    gsap.set(menuRefs.current, { autoAlpha: 0, x: 40 });
+    gsap.set(socialRefs.current, { autoAlpha: 0, y: 20 });
+    gsap.set(footerRef.current, { autoAlpha: 0, y: 20 });
 
     contentTl.current.clear();
 
     contentTl.current
-      .to(descRef.current, {
-        opacity: 1,
+      // LEFT TEXT (THIS WAS MISSING PROPERLY)
+      .to(titleRef.current, {
+        autoAlpha: 1,
         y: 0,
         duration: 0.6,
-        ease: "power2.out",
+        delay: 0.8,
+        ease: "power3.out",
       })
       .to(
-        menuItemsRef.current,
+        paraRef.current,
         {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
-          stagger: 0.08,
           duration: 0.6,
+          ease: "power3.out",
+        },
+        "-=0.4"
+      )
+
+      // MENU
+      .to(
+        menuRefs.current,
+        {
+          autoAlpha: 1,
+          x: 0,
+          stagger: 0.08,
+          duration: 0.5,
           ease: "power3.out",
         },
         "-=0.3"
       )
+
+      // SOCIAL
       .to(
-        socialItemsRef.current,
+        socialRefs.current,
         {
-          opacity: 1,
-          x: 0,
+          autoAlpha: 1,
+          y: 0,
           stagger: 0.1,
-          duration: 0.5,
+          duration: 0.4,
           ease: "power2.out",
         },
-        "-=0.4"
+        "-=0.3"
       )
+
+      // FOOTER
       .to(
         footerRef.current,
         {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
           duration: 0.4,
           ease: "power2.out",
@@ -196,8 +214,10 @@ const Header = () => {
         "-=0.3"
       );
 
-    isOpen ? contentTl.current.play() : contentTl.current.reverse();
-  }, [isOpen]);
+    contentTl.current.play(0);
+  }
+}, [isOpen]);
+
 
   return (
     <header className="fixed top-0 left-0 w-full z-[999]">
@@ -208,16 +228,14 @@ const Header = () => {
           alt="Webli"
           width={120}
           height={48}
-          className="object-contain z-[2000]"
         />
 
-        {/* MENU BUTTON */}
         <div
           ref={btnRef}
           onClick={() => setIsOpen(!isOpen)}
           className="relative h-8 w-16 cursor-pointer z-[2000] text-sm uppercase tracking-widest text-white overflow-hidden"
         >
-          <span className="absolute inset-0 flex items-center justify-center">
+          <span className="absolute inset-0 flex items-center justify-center opacity-0">
             Close
           </span>
           <span className="absolute inset-0 flex items-center justify-center">
@@ -229,73 +247,64 @@ const Header = () => {
       {/* OVERLAY */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[1500] bg-gradient-to-br from-stone-900 via-purple-600 to-yellow-300 translate-y-full"
+        className="fixed inset-0 z-[1500] bg-gradient-to-br from-white via-yellow-300 via-yellow-100 to-white translate-y-full"
       >
-        <div className="relative h-full w-full px-6 md:px-16 py-16 text-white">
-          <div className="grid grid-cols-1 md:grid-cols-12 h-full gap-8">
-
+        <div className="absolute inset-0 flex items-center justify-center px-5 md:px-12 py-5">
+          <div className="relative h-[80vh] w-[95%]">
             {/* LEFT */}
-            <div className="md:col-span-7 flex flex-col">
-              <div
-                ref={descRef}
-                className="max-w-md text-sm md:text-base leading-relaxed opacity-80 mb-12"
-              >
-                Webli Studio is a creative digital agency crafting immersive web
-                experiences. We blend design, animation, and engineering to build
-                brands that stand out in the digital world.
-              </div>
-
-              <div className="flex flex-col gap-6 md:gap-8 text-4xl md:text-4xl font-light tracking-tight">
-                {[
-                  { label: "Home", href: "/" },
-                  { label: "About", href: "/about" },
-                  { label: "Services", href: "/services" },
-                  { label: "Portfolio", href: "/portfolio" },
-                  { label: "Contact", href: "/contact" },
-                ].map((item, i) => (
-                  <Link
-                    key={i}
-                    href={item.href}
-                    ref={addToMenuRefs}
-                    onClick={() => setIsOpen(false)}
-                    className="hover:text-yellow-300 transition-colors duration-300"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
+            <div
+              ref={leftRef}
+              className="absolute top-0 left-0 h-full w-full md:w-1/2 flex flex-col justify-center p-6 md:p-10 gap-8 text-center md:text-left"
+            >
+              <h1 ref={titleRef} className="text-5xl font-bold text-zinc-800">
+                Webli Studio
+              </h1>
+              <p ref={paraRef} className="text-zinc-600 max-w-md">
+                Webli Studio is a digital creative studio focused on building
+                modern, high-impact web experiences. We blend thoughtful design,
+                smooth animations, and solid engineering to create websites that
+                feel fast, intuitive, and visually powerful.
+              </p>
             </div>
 
             {/* RIGHT */}
-            <div className="hidden md:col-span-5 md:flex flex-col justify-between items-end">
-              <div className="flex flex-col gap-4 text-sm uppercase tracking-widest opacity-80">
-                {[
-                  { label: "Instagram", href: "https://instagram.com" },
-                  { label: "Twitter", href: "https://twitter.com" },
-                  { label: "LinkedIn", href: "https://linkedin.com" },
-                  { label: "GitHub", href: "https://github.com" },
-                ].map((item, i) => (
-                  <Link
-                    key={i}
-                    href={item.href}
-                    ref={addToSocialRefs}
-                    target="_blank"
-                    className="hover:opacity-100 hover:-translate-x-2 transition-all duration-300"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-
-              <div
-                ref={footerRef}
-                className="text-xs text-black/50"
-              >
-                © {new Date().getFullYear()} Webli Studio
+            <div className="absolute top-0 right-0 h-full w-1/2 hidden md:block">
+              <div className="h-full flex flex-col justify-center items-center gap-8 font-bold text-zinc-800">
+                {["Home", "Services", "Portfolio", "About Us", "Contact"].map(
+                  (item, i) => (
+                    <Link
+                      key={i}
+                      ref={addMenuRef}
+                      href={item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "")}`}
+                      onClick={() => setIsOpen(false)}
+                      className="group text-3xl"
+                    >
+                      {item}
+                      <ArrowBigRight
+                        size={20}
+                        className="inline-block ml-2 group-hover:-rotate-45"
+                      />
+                    </Link>
+                  )
+                )}
               </div>
             </div>
 
+            {/* SOCIAL */}
+            <div className="absolute bottom-5 left-10 flex gap-6">
+              <Instagram ref={addSocialRef} size={24} className="text-zinc-800 hover:text-yellow-500 transition" />
+              <Linkedin ref={addSocialRef} size={24} className="text-zinc-800 hover:text-yellow-500 transition" />
+              <Github ref={addSocialRef} size={24} className="text-zinc-800 hover:text-yellow-500 transition" />
+            </div>
           </div>
+
+          {/* FOOTER */}
+          <footer
+            ref={footerRef}
+            className="absolute bottom-5 left-0 w-full text-center text-sm text-gray-700"
+          >
+            © {new Date().getFullYear()} Webli Studio. All rights reserved.
+          </footer>
         </div>
       </div>
     </header>
