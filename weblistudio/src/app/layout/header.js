@@ -5,7 +5,6 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
-
 import { ArrowBigRight, Instagram, Github, Linkedin } from "lucide-react";
 
 const Header = () => {
@@ -15,15 +14,13 @@ const Header = () => {
   const overlayRef = useRef(null);
   const tl = useRef(null);
 
-  // Content refs
-  const leftRef = useRef(null);
+  // content refs
   const menuRefs = useRef([]);
   const socialRefs = useRef([]);
   const footerRef = useRef(null);
-  const contentTl = useRef(null);
   const titleRef = useRef(null);
   const paraRef = useRef(null);
-
+  const contentTl = useRef(null);
 
   const addMenuRef = (el) => {
     if (el && !menuRefs.current.includes(el)) {
@@ -39,8 +36,6 @@ const Header = () => {
 
   /* ---------------- Initial State ---------------- */
   useGSAP(() => {
-    if (!overlayRef.current || !btnRef.current) return;
-
     gsap.set(overlayRef.current, {
       y: "100%",
       scale: 0.6,
@@ -51,18 +46,18 @@ const Header = () => {
     gsap.set(btnRef.current.children[0], { opacity: 0, x: "50%" });
     gsap.set(btnRef.current.children[1], { opacity: 1, x: "0%" });
 
-    // initial hidden states
-    gsap.set(leftRef.current, { opacity: 0, y: 40 });
-    gsap.set(menuRefs.current, { opacity: 0, x: 40 });
-    gsap.set(socialRefs.current, { opacity: 0, y: 20 });
-    gsap.set(footerRef.current, { opacity: 0, y: 20 });
+    gsap.set([titleRef.current, paraRef.current], {
+      autoAlpha: 0,
+      y: 30,
+    });
 
+    gsap.set(menuRefs.current, { autoAlpha: 0, x: 40 });
+    gsap.set(socialRefs.current, { autoAlpha: 0, y: 20 });
+    gsap.set(footerRef.current, { autoAlpha: 0, y: 20 });
   }, []);
 
-  /* ---------------- Overlay + Button Animation ---------------- */
+  /* ---------------- Overlay + Button ---------------- */
   useGSAP(() => {
-    if (!btnRef.current || !overlayRef.current) return;
-
     if (!tl.current) {
       tl.current = gsap.timeline({ paused: true });
     }
@@ -74,23 +69,8 @@ const Header = () => {
 
     if (isOpen) {
       tl.current
-        .to(menuText, {
-          opacity: 0,
-          x: "50%",
-          duration: 0.3,
-          ease: "power2.out",
-        })
-        .to(
-          closeText,
-          {
-            opacity: 1,
-            x: "0%",
-            duration: 0.3,
-            ease: "power2.out",
-            color: "#000",
-          },
-          "<"
-        )
+        .to(menuText, { opacity: 0, x: "50%", duration: 0.3 })
+        .to(closeText, { opacity: 1, x: "0%", duration: 0.3 }, "<")
         .to(
           overlayRef.current,
           {
@@ -101,26 +81,12 @@ const Header = () => {
             ease: "power3.out",
             pointerEvents: "auto",
           },
-          "-=0.25"
+          "-=0.2"
         );
     } else {
       tl.current
-        .to(closeText, {
-          opacity: 0,
-          x: "50%",
-          duration: 0.3,
-          ease: "power2.out",
-        })
-        .to(
-          menuText,
-          {
-            opacity: 1,
-            x: "0%",
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          "<"
-        )
+        .to(closeText, { opacity: 0, x: "50%", duration: 0.3 })
+        .to(menuText, { opacity: 1, x: "0%", duration: 0.3 }, "<")
         .to(
           overlayRef.current,
           {
@@ -131,111 +97,95 @@ const Header = () => {
             ease: "power3.inOut",
             pointerEvents: "none",
           },
-          "-=0.25"
+          "-=0.2"
         );
     }
 
     tl.current.play();
   }, [isOpen]);
 
-  /* ---------------- Overlay Content Animation (RESTART EVERY OPEN) ---------------- */
+  /* ---------------- Content Animation (EVERY OPEN) ---------------- */
   useGSAP(() => {
-  if (!contentTl.current) {
-    contentTl.current = gsap.timeline({ paused: true });
-  }
+    if (!contentTl.current) {
+      contentTl.current = gsap.timeline({ paused: true });
+    }
 
-  if (isOpen) {
-    // 🔁 RESET EVERY OPEN
-    gsap.set([titleRef.current, paraRef.current], {
-      autoAlpha: 0,
-      y: 30,
-    });
-    gsap.set(menuRefs.current, { autoAlpha: 0, x: 40 });
-    gsap.set(socialRefs.current, { autoAlpha: 0, y: 20 });
-    gsap.set(footerRef.current, { autoAlpha: 0, y: 20 });
+    if (isOpen) {
+      gsap.set([titleRef.current, paraRef.current], {
+        autoAlpha: 0,
+        y: 30,
+      });
+      gsap.set(menuRefs.current, { autoAlpha: 0, x: 40 });
+      gsap.set(socialRefs.current, { autoAlpha: 0, y: 20 });
+      gsap.set(footerRef.current, { autoAlpha: 0, y: 20 });
 
-    contentTl.current.clear();
+      contentTl.current.clear();
 
-    contentTl.current
-      // LEFT TEXT (THIS WAS MISSING PROPERLY)
-      .to(titleRef.current, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 0.8,
-        ease: "power3.out",
-      })
-      .to(
-        paraRef.current,
-        {
+      contentTl.current
+        .to(titleRef.current, {
           autoAlpha: 1,
           y: 0,
           duration: 0.6,
+          delay: 0.7,
           ease: "power3.out",
-        },
-        "-=0.4"
-      )
+        })
+        .to(
+          paraRef.current,
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "-=0.4"
+        )
+        .to(
+          menuRefs.current,
+          {
+            autoAlpha: 1,
+            x: 0,
+            stagger: 0.08,
+            duration: 0.5,
+            ease: "power3.out",
+          },
+          "-=0.3"
+        )
+        .to(
+          socialRefs.current,
+          {
+            autoAlpha: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.4,
+          },
+          "-=0.3"
+        )
+        .to(
+          footerRef.current,
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.4,
+          },
+          "-=0.3"
+        );
 
-      // MENU
-      .to(
-        menuRefs.current,
-        {
-          autoAlpha: 1,
-          x: 0,
-          stagger: 0.08,
-          duration: 0.5,
-          ease: "power3.out",
-        },
-        "-=0.3"
-      )
-
-      // SOCIAL
-      .to(
-        socialRefs.current,
-        {
-          autoAlpha: 1,
-          y: 0,
-          stagger: 0.1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      )
-
-      // FOOTER
-      .to(
-        footerRef.current,
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      );
-
-    contentTl.current.play(0);
-  }
-}, [isOpen]);
-
+      contentTl.current.play(0);
+    }
+  }, [isOpen]);
 
   return (
     <header className="fixed top-0 left-0 w-full z-[999]">
-      {/* NAVBAR */}
-      <div className="flex items-center justify-between px-5 md:px-12 py-5">
-        <Image
-          src="/logo/primaryLogoWhite.svg"
-          alt="Webli"
-          width={120}
-          height={48}
-        />
+      {/* NAV */}
+      <div className="flex justify-between px-5 md:px-12 py-5">
+        <Image src="/logo/primaryLogoWhite.svg" alt="Webli" width={120} height={48} />
 
         <div
           ref={btnRef}
           onClick={() => setIsOpen(!isOpen)}
-          className="relative h-8 w-16 cursor-pointer z-[2000] text-sm uppercase tracking-widest text-white overflow-hidden"
+          className="relative h-8 w-16 cursor-pointer text-sm uppercase tracking-widest text-white z-[999]"
         >
-          <span className="absolute inset-0 flex items-center justify-center opacity-0">
+          <span className="absolute inset-0 flex items-center justify-center opacity-0 text-zinc-800">
             Close
           </span>
           <span className="absolute inset-0 flex items-center justify-center">
@@ -247,62 +197,45 @@ const Header = () => {
       {/* OVERLAY */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[1500] bg-gradient-to-br from-white via-yellow-300 via-yellow-100 to-white translate-y-full"
+        className="fixed inset-0 bg-gradient-to-br from-white via-yellow-300 via-yellow-100 to-white"
       >
-        <div className="absolute inset-0 flex items-center justify-center px-5 md:px-12 py-5">
-          <div className="relative h-[80vh] w-[95%]">
-            {/* LEFT */}
-            <div
-              ref={leftRef}
-              className="absolute top-0 left-0 h-full w-full md:w-1/2 flex flex-col justify-center p-6 md:p-10 gap-8 text-center md:text-left"
-            >
-              <h1 ref={titleRef} className="text-5xl font-bold text-zinc-800">
-                Webli Studio
-              </h1>
-              <p ref={paraRef} className="text-zinc-600 max-w-md">
-                Webli Studio is a digital creative studio focused on building
-                modern, high-impact web experiences. We blend thoughtful design,
-                smooth animations, and solid engineering to create websites that
-                feel fast, intuitive, and visually powerful.
-              </p>
-            </div>
+        <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-10 text-center md:text-left">
+          <h1 ref={titleRef} className="text-5xl font-bold text-zinc-800">
+            Webli Studio
+          </h1>
 
-            {/* RIGHT */}
-            <div className="absolute top-0 right-0 h-full w-1/2 hidden md:block">
-              <div className="h-full flex flex-col justify-center items-center gap-8 font-bold text-zinc-800">
-                {["Home", "Services", "Portfolio", "About Us", "Contact"].map(
-                  (item, i) => (
-                    <Link
-                      key={i}
-                      ref={addMenuRef}
-                      href={item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "")}`}
-                      onClick={() => setIsOpen(false)}
-                      className="group text-3xl"
-                    >
-                      {item}
-                      <ArrowBigRight
-                        size={20}
-                        className="inline-block ml-2 group-hover:-rotate-45"
-                      />
-                    </Link>
-                  )
-                )}
-              </div>
-            </div>
+          <p ref={paraRef} className="max-w-xl text-zinc-600">
+            Webli Studio is a digital creative studio focused on building modern,
+            high-impact web experiences.
+          </p>
 
-            {/* SOCIAL */}
-            <div className="absolute bottom-5 left-10 flex gap-6">
-              <Instagram ref={addSocialRef} size={24} className="text-zinc-800 hover:text-yellow-500 transition" />
-              <Linkedin ref={addSocialRef} size={24} className="text-zinc-800 hover:text-yellow-500 transition" />
-              <Github ref={addSocialRef} size={24} className="text-zinc-800 hover:text-yellow-500 transition" />
-            </div>
+          {/* MENU (RESPONSIVE, ALWAYS VISIBLE) */}
+          <div className="flex flex-col md:flex-row md:flex-wrap gap-6 text-2xl font-bold text-zinc-800">
+            {["Home", "Services", "Portfolio", "About Us", "Contact"].map(
+              (item, i) => (
+                <Link
+                  key={i}
+                  ref={addMenuRef}
+                  href={item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "")}`}
+                  onClick={() => setIsOpen(false)}
+                  className="group"
+                >
+                  {item}
+                  <ArrowBigRight className="inline-block ml-2 group-hover:-rotate-45" size={18} />
+                </Link>
+              )
+            )}
+          </div>
+
+          {/* SOCIAL */}
+          <div className="flex gap-6 text-zinc-800">
+            <Instagram ref={addSocialRef} />
+            <Linkedin ref={addSocialRef} />
+            <Github ref={addSocialRef} />
           </div>
 
           {/* FOOTER */}
-          <footer
-            ref={footerRef}
-            className="absolute bottom-5 left-0 w-full text-center text-sm text-gray-700"
-          >
+          <footer ref={footerRef} className="text-sm text-gray-700">
             © {new Date().getFullYear()} Webli Studio. All rights reserved.
           </footer>
         </div>
