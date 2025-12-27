@@ -199,18 +199,17 @@ const Header = () => {
         ref={overlayRef}
         className="fixed inset-0 bg-gradient-to-br from-white via-yellow-300 via-yellow-100 to-white"
       >
-        <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-10 text-center md:text-left">
-          <h1 ref={titleRef} className="text-5xl font-bold text-zinc-800">
+        <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-5 md:gap-10 text-center md:text-left">
+          <h1 ref={titleRef} className="text-3xl md:text-5xl font-bold text-zinc-800">
             Webli Studio
           </h1>
 
-          <p ref={paraRef} className="max-w-xl text-zinc-600">
-            Webli Studio is a digital creative studio focused on building modern,
-            high-impact web experiences.
+          <p ref={paraRef} className="text-[0.8em] md:text-[0.9em] max-w-2xl text-zinc-600">
+            Webli Studio is a digital creative studio focused on building modern, high-impact web experiences. We blend thoughtful design, smooth animations, and solid engineering to create websites that feel fast, intuitive, and visually powerful. Every project is crafted with precision to help brands stand out and scale confidently in the digital space.
           </p>
 
           {/* MENU (RESPONSIVE, ALWAYS VISIBLE) */}
-          <div className="flex flex-col md:flex-row md:flex-wrap gap-6 text-2xl font-bold text-zinc-800">
+          <div className="flex flex-col md:flex-row md:flex-wrap gap-6 text-[0.9em] md:text-2xl font-bold text-zinc-800">
             {["Home", "Services", "Portfolio", "About Us", "Contact"].map(
               (item, i) => (
                 <Link
@@ -221,21 +220,21 @@ const Header = () => {
                   className="group"
                 >
                   {item}
-                  <ArrowBigRight className="inline-block ml-2 group-hover:-rotate-45" size={18} />
+                  <ArrowBigRight className="inline-block ml-2 group-hover:-rotate-45" size={15} />
                 </Link>
               )
             )}
           </div>
 
           {/* SOCIAL */}
-          <div className="flex gap-6 text-zinc-800">
-            <Instagram ref={addSocialRef} />
-            <Linkedin ref={addSocialRef} />
-            <Github ref={addSocialRef} />
+          <div className="flex gap-6 text-zinc-800 text-md">
+            <Instagram ref={addSocialRef} size={18} />
+            <Linkedin ref={addSocialRef} size={18} />
+            <Github ref={addSocialRef} size={18} />
           </div>
 
           {/* FOOTER */}
-          <footer ref={footerRef} className="text-sm text-gray-700">
+          <footer ref={footerRef} className="text-[0.8em] md:text-sm text-gray-700">
             © {new Date().getFullYear()} Webli Studio. All rights reserved.
           </footer>
         </div>
