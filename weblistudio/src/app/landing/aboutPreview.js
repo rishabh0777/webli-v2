@@ -1,26 +1,31 @@
 "use client";
 
 import React, { useRef } from "react";
-import { ArrowBigRight } from "lucide-react";
-import { useGSAP } from "@gsap/react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPreview() {
   const sectionRef = useRef(null);
   const blocksRef = useRef([]);
-  const circleRef = useRef(null);
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
       blocksRef.current.forEach((block, index) => {
         if (!block) return;
 
-        // STEP 1 — Split text into spans
-        const words = block.innerText.split(" ");
+        /* ---------------- SAVE ORIGINAL TEXT ---------------- */
+        if (!block.dataset.originalText) {
+          block.dataset.originalText = block.innerText;
+        }
+
+        const text = block.dataset.originalText;
+        const words = text.split(" ");
+
+        /* ---------------- SPLIT TEXT ---------------- */
         block.innerHTML = words
           .map(
             (word) =>
@@ -30,7 +35,7 @@ export default function AboutPreview() {
 
         const wordSpans = block.querySelectorAll("span");
 
-        // STEP 2 — stagger word reveal
+        /* ---------------- WORD REVEAL ---------------- */
         gsap.to(wordSpans, {
           opacity: 1,
           y: 0,
@@ -43,7 +48,7 @@ export default function AboutPreview() {
           },
         });
 
-        // STEP 3 — shift block left-right pattern
+        /* ---------------- BLOCK SLIDE ---------------- */
         gsap.from(block, {
           x: index % 2 === 0 ? -60 : 60,
           opacity: 0,
@@ -56,7 +61,7 @@ export default function AboutPreview() {
         });
       });
 
-      // CTA animation
+      /* ---------------- CTA ---------------- */
       gsap.from(".about-cta-btn", {
         opacity: 0,
         y: 30,
@@ -69,10 +74,17 @@ export default function AboutPreview() {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    /* ---------------- CLEANUP (IMPORTANT) ---------------- */
+    return () => {
+      blocksRef.current.forEach((block) => {
+        if (block?.dataset.originalText) {
+          block.innerText = block.dataset.originalText;
+        }
+      });
+      ctx.revert();
+    };
   }, []);
 
-  // ⭐ UPDATED — 4 paragraphs
   const aboutTexts = [
     `Webli Studio blends design, storytelling and engineering. 
     We create expressive, animated websites that feel alive — crafted for brands that want personality.`,
@@ -84,7 +96,7 @@ export default function AboutPreview() {
     not blend in — fast delivery, clean execution, zero fluff.`,
 
     `Our goal is simple: websites that perform like products. 
-    Interactive, memorable and built with intention — turning your audience into believers, not just visitors.`
+    Interactive, memorable and built with intention — turning your audience into believers, not just visitors.`,
   ];
 
   return (
@@ -92,54 +104,37 @@ export default function AboutPreview() {
       ref={sectionRef}
       className="relative w-full min-h-[140vh] text-white pt-20 pb-10 px-8 sm:px-20 lg:px-36"
     >
+      {/* Floating blobs */}
       <div className="absolute top-[10vh] left-[20vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
       <div className="absolute top-[35vh] left-[60vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
       <div className="absolute top-[60vh] left-[30vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
       <div className="absolute top-[85vh] left-[60vw] h-10 w-10 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
-      {/* Paragraph 1 */}
-      <div 
-        ref={(el) => (blocksRef.current[0] = el)}
-        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[10vh] left-8 sm:left-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
-      >
-        
-        {aboutTexts[0]}
-      </div>
 
-      {/* Paragraph 2 */}
-      <div
-        ref={(el) => (blocksRef.current[1] = el)}
-        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[35vh] right-8 sm:right-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
-      >
-        
-        {aboutTexts[1]}
-      </div>
-
-      {/* Paragraph 3 */}
-      <div
-        ref={(el) => (blocksRef.current[2] = el)}
-        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[60vh] left-8 sm:left-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
-      >
-        
-        {aboutTexts[2]}
-      </div>
-
-      <div
-        ref={(el) => (blocksRef.current[3] = el)}
-        className="w-[60vw] sm:w-[30vw] min-h-[20vh] absolute top-[85vh] right-8 sm:right-[10vw] text-[3vw] sm:text-sm leading-relaxed text-white/90"
-      >
-        
-        {aboutTexts[3]}
-      </div>
-
-      {/* CTA Button */}
-      <div className="absolute bottom-[20vh] left-1/2 transform -translate-x-1/2 text-center ">
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-black md:text-base text-[3vw] border border-white/20 md:px-6 md:py-2 px-16 py-3 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-100 transition whitespace-nowrap about-cta-btn"
-          >
-            Learn more about us <span className="text-[4.5vw] sm:text-base">→</span>
-          </Link>
+      {/* Paragraphs */}
+      {aboutTexts.map((text, i) => (
+        <div
+          key={i}
+          ref={(el) => (blocksRef.current[i] = el)}
+          className={`block w-[60vw] sm:w-[30vw] max-w-[30vw] min-h-[20vh] absolute
+            ${i === 0 ? "top-[10vh] left-8 sm:left-[10vw]" : ""}
+            ${i === 1 ? "top-[35vh] right-8 sm:right-[10vw]" : ""}
+            ${i === 2 ? "top-[60vh] left-8 sm:left-[10vw]" : ""}
+            ${i === 3 ? "top-[85vh] right-8 sm:right-[10vw]" : ""}
+            text-[3vw] sm:text-sm leading-relaxed text-white/90 overflow-hidden`}
+        >
+          {text}
         </div>
+      ))}
+
+      {/* CTA */}
+      <div className="absolute bottom-[20vh] left-1/2 -translate-x-1/2 text-center">
+        <Link
+          href="/about"
+          className="about-cta-btn inline-flex items-center gap-2 text-white/90 hover:text-black md:text-base text-[3vw] border border-white/20 md:px-6 md:py-2 px-16 py-3 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-100 transition whitespace-nowrap"
+        >
+          Learn more about us <span className="text-[4.5vw] sm:text-base">→</span>
+        </Link>
+      </div>
     </main>
   );
 }
