@@ -173,9 +173,6 @@ export default function Service() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* ---------- Header ---------- */}
         <div className="services-head mb-12">
-          <p className="uppercase text-xs tracking-widest text-white/40 mb-2">
-            Our Services
-          </p>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white">
             Motion-first websites built for{" "}

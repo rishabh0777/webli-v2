@@ -65,12 +65,6 @@ export default function ServicePreview() {
   return (
     <section id="service-preview" className="relative py-12 sm:py-16 lg:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        
-        {/* Section Label */}
-        <p className="uppercase text-xs tracking-widest text-white/40 mb-2">
-          Service Preview
-        </p>
-
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10">
           <div>
