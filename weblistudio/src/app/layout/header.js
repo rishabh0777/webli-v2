@@ -200,7 +200,7 @@ const Header = () => {
         className="fixed inset-0 bg-gradient-to-br from-white via-yellow-300 via-yellow-100 to-white"
       >
         <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-5 md:gap-10 text-center md:text-left">
-          <h1 ref={titleRef} className="text-3xl md:text-5xl font-bold text-zinc-800">
+          <h1 ref={titleRef} className="font-[bangers] tracking-wide text-3xl md:text-5xl font-bold text-zinc-800">
             Webli Studio
           </h1>
 
