@@ -8,6 +8,9 @@ import { projects } from "@/projectData";
 
 export default function PortfolioPreview() {
 
+  // get 3 projects only
+  const threeProjects = projects.slice(0, 3);
+
   
     return (
         <section id="showcase" className="relative py-12 sm:py-16 lg:py-20">
@@ -38,7 +41,7 @@ export default function PortfolioPreview() {
         <div className="relative grid md:grid-cols-3 gap-5 sm:gap-6">
           <div className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]" />
               <div className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
-          {projects.map((project, i) => (
+          {threeProjects.map((project, i) => (
             <PortfolioCard key={i} project={project} />
           ))}
         </div>
