@@ -210,7 +210,7 @@ const Header = () => {
 
           {/* MENU (RESPONSIVE, ALWAYS VISIBLE) */}
           <div className="flex flex-col md:flex-row md:flex-wrap gap-6 text-[0.9em] md:text-2xl font-bold text-zinc-800">
-            {["Home", "Services", "Portfolio", "About Us", "Contact"].map(
+            {["Home", "Services", "Portfolio", "About", "Contact"].map(
               (item, i) => (
                 <Link
                   key={i}
