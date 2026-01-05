@@ -27,10 +27,10 @@ export default function PortfolioPreview() {
                   Hover, scroll, tap — everything reacts. These projects are tiny playgrounds of motion and color for modern internet brands.
                 </p>
               </div>
-              <div className="text-center mt-10">
+              <div className="text-center mt-16">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-black md:text-base text-[3vw] border border-white/20 md:px-6 md:py-2 px-16 py-3 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-100 transition whitespace-nowrap about-cta-btn"
+            className="inline-flex items-center gap-3 text-sm sm:text-base tracking-wide uppercase text-white/80 hover:text-black px-8 py-4 border border-white/20 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-200 transition about-cta-btn"
           >
             Our Portfolio <span className="text-[4.5vw] sm:text-base">→</span>
           </Link>
