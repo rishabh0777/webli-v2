@@ -24,7 +24,6 @@ export default function ServicePreview() {
       blobGradient:
         "bg-gradient-to-br from-yellow-100 via-pink-400 to-purple-400",
     },
-
     {
       title: "Interactive Web Experiences",
       subtitle: "Try demo",
@@ -42,7 +41,6 @@ export default function ServicePreview() {
       blobGradient:
         "bg-gradient-to-tr from-blue-300 via-cyan-300 to-emerald-300",
     },
-
     {
       title: "Brand Refresh Websites",
       subtitle: "Refresh brand",
@@ -63,12 +61,25 @@ export default function ServicePreview() {
   ];
 
   return (
-    <section id="service-preview" className="relative py-12 sm:py-16 lg:py-20">
+    <section
+      id="service-preview"
+      aria-labelledby="service-preview-heading"
+      className="relative py-12 sm:py-16 lg:py-20"
+    >
+      {/* INVISIBLE LOCAL + SERVICE SEO SIGNAL */}
+      <meta
+        name="keywords"
+        content="Webli Studio services, animated websites, MERN development, GSAP animations, startup web development, modern web agency India"
+      />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white">
+            <h2
+              id="service-preview-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white"
+            >
               <span>A glimpse of what we build —</span>
               <span className="bg-gradient-to-r from-yellow-400 via-white to-yellow-100 bg-clip-text text-transparent">
                 {" "}
@@ -97,10 +108,19 @@ export default function ServicePreview() {
 
         {/* Cards grid */}
         <div className="relative grid md:grid-cols-3 gap-5 sm:gap-6">
-          <div className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]" />
-              <div className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
+          <div
+            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
+
           {services.map((card, index) => (
-            <ServiceCard key={index} {...card} />
+            <article key={index} aria-label={card.title}>
+              <ServiceCard {...card} />
+            </article>
           ))}
         </div>
 
@@ -108,6 +128,7 @@ export default function ServicePreview() {
         <div className="text-center mt-10">
           <Link
             href="/services"
+            aria-label="View all Webli Studio services"
             className="inline-flex items-center gap-3 text-sm sm:text-base tracking-wide uppercase text-white/80 hover:text-black px-8 py-4 border border-white/20 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-200 transition about-cta-btn"
           >
             View All Services <span className="text-[4.5vw] sm:text-base">→</span>

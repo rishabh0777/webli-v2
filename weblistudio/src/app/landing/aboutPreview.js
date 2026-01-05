@@ -61,46 +61,67 @@ export default function AboutPreview() {
   return (
     <section
       ref={sectionRef}
+      aria-labelledby="about-preview-heading"
       className="relative py-12 sm:py-16 lg:py-20"
     >
+      {/* INVISIBLE LOCAL SEO SIGNAL */}
+      <meta
+        name="keywords"
+        content="Webli Studio, MERN web development, animated websites, startup websites, modern web studio India"
+      />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <div className="mb-8 sm:mb-10">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white">
+          <h2
+            id="about-preview-heading"
+            className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white"
+          >
             What makes
             <span className="bg-gradient-to-r from-yellow-100 via-yellow-300 to-white bg-clip-text text-transparent">
               {" "}Webli Studio{" "}
             </span>
             different?
           </h2>
+
           <p className="mt-2 text-base sm:text-lg text-white/80 max-w-xl">
-            Not just websites — playful launch experiences designed to convert, impress and stay memorable.
+            Not just websites — playful launch experiences designed to convert,
+            impress and stay memorable.
           </p>
         </div>
 
         {/* Cards */}
         <div className="relative grid md:grid-cols-3 gap-5 sm:gap-6">
-          <div className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]" />
-          <div className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
+          <div
+            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
 
           {cards.map((card, i) => (
-            <div
+            <article
               key={i}
               ref={(el) => (cardsRef.current[i] = el)}
               className={`relative rounded-3xl bg-gradient-to-br ${card.gradient} p-1 shadow-lg`}
+              aria-label={card.title}
             >
               <div className="rounded-3xl bg-black p-5 sm:p-6 h-full">
                 <span className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-300 via-white to-yellow-100 text-black text-[0.7rem] sm:text-xs font-medium px-2.5 py-1 shadow-sm">
                   {card.badge}
                 </span>
+
                 <h3 className="mt-4 text-lg sm:text-xl font-semibold tracking-tight text-white">
                   {card.title}
                 </h3>
+
                 <p className="mt-2 text-sm sm:text-base text-white/80">
                   {card.desc}
                 </p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -109,6 +130,7 @@ export default function AboutPreview() {
           <Link
             href="/about"
             className="inline-flex items-center gap-3 text-sm sm:text-base tracking-wide uppercase text-white/80 hover:text-black px-8 py-4 border border-white/20 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-200 transition"
+            aria-label="Learn more about Webli Studio"
           >
             Learn more about Webli <span className="text-[4.5vw] sm:text-base">→</span>
           </Link>

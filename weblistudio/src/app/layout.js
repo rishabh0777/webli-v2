@@ -19,26 +19,35 @@ const poppins = Poppins({
 
 
 export const metadata = {
-  metadataBase: new URL("https://weblistudio.in"),
+  metadataBase: new URL("https://webli.vercel.app"),
+
   title: {
     default: "Webli Studio — We Build. You Launch.",
     template: "%s | Webli Studio",
   },
+
   description:
-    "Webli Studio is a modern MERN-stack web development agency. We build high-performance, animated, SEO-optimized websites. We Build. You Launch.",
+    "Webli Studio is a modern MERN-stack web development studio building animated, high-performance, SEO-optimized websites for startups and brands.",
+
   keywords: [
     "Webli Studio",
-    "web development",
-    "MERN agency",
-    "React developer",
-    "Next.js websites",
-    "SEO optimized websites",
-    "Indian web agency",
+    "web development agency",
+    "MERN stack developers",
+    "React and Next.js agency",
+    "animated websites",
+    "GSAP animation websites",
+    "Indian web development studio",
   ],
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   openGraph: {
     title: "Webli Studio — We Build. You Launch.",
     description:
-      "Powerful MERN-stack websites with modern UI, animations, and SEO. We Build. You Launch.",
+      "Animated, SEO-optimized MERN websites with modern UI and smooth interactions.",
     url: "https://webli.vercel.app",
     siteName: "Webli Studio",
     images: [
@@ -46,15 +55,26 @@ export const metadata = {
         url: "/logo/primaryLogoWhite.svg",
         width: 1200,
         height: 630,
+        alt: "Webli Studio — Animated Web Development Studio",
       },
     ],
+    locale: "en_IN",
     type: "website",
   },
-  robots: {
-    index: true,
-    follow: true,
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Webli Studio — We Build. You Launch.",
+    description:
+      "Modern MERN + GSAP animated websites crafted for startups and brands.",
+    images: ["/logo/primaryLogoWhite.svg"],
+  },
+
+  alternates: {
+    canonical: "https://webli.vercel.app",
   },
 };
+
 
 
 export default function RootLayout({ children }) {

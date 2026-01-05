@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-
 import Marquee from "@/components/marquee";
 
 export default function Hero() {
@@ -14,10 +13,12 @@ export default function Hero() {
   const blobC = useRef(null);
 
   useEffect(() => {
-    // --- letter flag animation (entrance + gentle wave) ---
     const chars = lettersRef.current;
+
+    // --- letter flag animation (entrance + gentle wave) ---
     if (chars && chars.length) {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
       tl.fromTo(
         chars,
         {
@@ -36,7 +37,6 @@ export default function Hero() {
         }
       );
 
-      // gentle loop wave
       chars.forEach((char, i) => {
         gsap.to(char, {
           y: 6,
@@ -82,7 +82,6 @@ export default function Hero() {
       });
     });
 
-    // cleanup
     return () => {
       gsap.killTweensOf(chars);
       gsap.killTweensOf(taglineRef.current);
@@ -91,102 +90,105 @@ export default function Hero() {
     };
   }, []);
 
-  const renderLetters = (text) =>
-    text.split("").map((ch, i) => (
-      <span
-        key={i}
-        ref={(el) => (lettersRef.current[i] = el)}
-        className="inline-block opacity-0"
-        aria-hidden={ch === " " ? "true" : "false"}
-      >
-        {ch === " " ? "\u00A0" : ch}
-      </span>
-    ));
-
   return (
-    <main className="flex-1">
-      <section className="relative overflow-hidden pt-[8vh] md:pt-5">
-        {/* Floating gradient blobs background */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
+    <section
+      aria-labelledby="hero-heading"
+      className="relative overflow-hidden pt-[8vh] md:pt-5"
+    >
+      {/* INVISIBLE LOCAL SEO SIGNAL */}
+      <meta
+        name="description"
+        content="Webli Studio is an animated MERN web development studio serving startups and modern brands across India."
+      />
 
-          {/* BLOB A — changed from pink/purple to full yellow */}
-          <div
-            ref={blobA}
-            className="absolute -top-24 -left-10 h-56 w-56 sm:h-80 sm:w-80 rounded-full 
-    bg-gradient-to-br from-yellow-300 via-yellow-200 to-yellow-100 opacity-70 blur-3xl"
-            style={{ animation: "pulse 9s ease-in-out infinite alternate" }}
-            aria-hidden="true"
-          />
+      {/* Floating gradient blobs background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          ref={blobA}
+          className="absolute -top-24 -left-10 h-56 w-56 sm:h-80 sm:w-80 rounded-full 
+          bg-gradient-to-br from-yellow-300 via-yellow-200 to-yellow-100 opacity-70 blur-3xl"
+          aria-hidden="true"
+        />
 
-          {/* BLOB B — changed from cyan/emerald to yellow glow */}
-          <div
-            ref={blobB}
-            className="absolute -right-10 -bottom-24 h-64 w-64 sm:h-80 sm:w-80 rounded-full 
-    bg-gradient-to-tl from-yellow-300 via-yellow-100 to-yellow-200 opacity-70 blur-3xl"
-            style={{ animation: "pulse 11s ease-in-out infinite alternate" }}
-            aria-hidden="true"
-          />
+        <div
+          ref={blobB}
+          className="absolute -right-10 -bottom-24 h-64 w-64 sm:h-80 sm:w-80 rounded-full 
+          bg-gradient-to-tl from-yellow-300 via-yellow-100 to-yellow-200 opacity-70 blur-3xl"
+          aria-hidden="true"
+        />
 
-          {/* BLOB C — changed from purple/pink to warm yellow-white glow */}
-          <div
-            ref={blobC}
-            className="absolute left-1/3 top-1/3 h-40 w-40 sm:h-56 sm:w-56 rounded-[40%] 
-    bg-gradient-to-br from-yellow-200/70 via-yellow-100/60 to-white/70 opacity-70 blur-2xl"
-            style={{ animation: "bounce 12s ease-in-out infinite alternate" }}
-            aria-hidden="true"
-          />
-        </div>
+        <div
+          ref={blobC}
+          className="absolute left-1/3 top-1/3 h-40 w-40 sm:h-56 sm:w-56 rounded-[40%] 
+          bg-gradient-to-br from-yellow-200/70 via-yellow-100/60 to-white/70 opacity-70 blur-2xl"
+          aria-hidden="true"
+        />
+      </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-20 pb-16 sm:pb-20 lg:pb-24">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            {/* Hero text */}
-            <div className="space-y-6 sm:space-y-7">
-              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-3 py-2 shadow-sm shadow-slate-100/70 backdrop-blur">
-                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-gradient-to-br from-yellow-300 via-pink-400 to-blue-500 animate-[pulse_1.5s_ease-in-out_infinite]"></span>
-                <span className="text-xs font-medium text-black/90">MERN + Animated Web Studio for Modern Brands</span>
-              </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-20 pb-16 sm:pb-20 lg:pb-24">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          {/* Hero text */}
+          <div className="space-y-6 sm:space-y-7">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-3 py-2 shadow-sm shadow-slate-100/70 backdrop-blur">
+              <span className="inline-flex h-1.5 w-1.5 rounded-full bg-gradient-to-br from-yellow-300 via-pink-400 to-blue-500 animate-[pulse_1.5s_ease-in-out_infinite]"></span>
+              <span className="text-xs font-medium text-black/90">
+                MERN + Animated Web Studio for Modern Brands
+              </span>
+            </div>
 
-              <div className="space-y-2">
-                <h1 className="text-4xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-tight">
-                  <span className="md:text-3xl text-xl">Webli Studio — </span>We Build.
-                  <span className="block bg-gradient-to-r from-yellow-400 via-yellow-100 to-white bg-clip-text text-transparent">
-                    You Launch.
-                  </span>
-                </h1>
-                <p className="text-base sm:text-lg text-white/90 max-w-xl">
-                  We build modern, animated, high-performance websites with MERN, GSAP and Framer Motion — clean UI, smooth interactions, and designs that convert.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                <button className="inline-flex items-center justify-center rounded-full bg-white text-xs sm:text-sm font-semibold tracking-tight text-black py-2.5 sm:py-3 px-5 sm:px-6 shadow-lg shadow-slate-400/50 hover:scale-105 active:scale-95 transition-transform duration-150">
-                  🚀 Start your project
-                </button>
-                <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-xs sm:text-sm font-medium text-black py-2.5 sm:py-3 px-4 sm:px-5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-yellow-200 transition-all duration-150">
-
-                  🎉 View showcase
-                </button>
-
-              </div>
-
-              <div className="flex flex-wrap gap-4 items-center text-xs sm:text-sm text-slate-500">
-                <div className="flex -space-x-2">
-                  <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-yellow-300 to-pink-400 border border-white shadow-sm" />
-                  <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 border border-white shadow-sm" />
-                  <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-emerald-300 to-cyan-400 border border-white shadow-sm" />
-
-                </div>
-                <span className="inline-flex items-center text-xs sm:text-sm text-white/80">
-                  <span className="mr-1.5 text-base leading-none">⚡</span>
-                  1–4 week delivery
+            <div className="space-y-2">
+              <h1
+                id="hero-heading"
+                className="text-4xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-tight"
+              >
+                <span className="md:text-3xl text-xl">Webli Studio — </span>
+                We Build.
+                <span className="block bg-gradient-to-r from-yellow-400 via-yellow-100 to-white bg-clip-text text-transparent">
+                  You Launch.
                 </span>
-                <div className="space-x-2">
-                  <span className="font-medium text-white/80">3+ playful launches</span>
-                  <span className="text-white/80">·</span>
-                  <span className="text-white/80">for businesses, creators & modern startup brands</span>
-                </div>
+              </h1>
+
+              <p
+                ref={taglineRef}
+                className="text-base sm:text-lg text-white/90 max-w-xl"
+              >
+                We build modern, animated, high-performance websites with MERN,
+                GSAP and Framer Motion — clean UI, smooth interactions, and designs
+                that convert.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              <button className="inline-flex items-center justify-center rounded-full bg-white text-xs sm:text-sm font-semibold tracking-tight text-black py-2.5 sm:py-3 px-5 sm:px-6 shadow-lg shadow-slate-400/50 hover:scale-105 active:scale-95 transition-transform duration-150">
+                🚀 Start your project
+              </button>
+
+              <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-xs sm:text-sm font-medium text-black py-2.5 sm:py-3 px-4 sm:px-5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-yellow-200 transition-all duration-150">
+                🎉 View showcase
+              </button>
+            </div>
+
+            <div className="flex flex-wrap gap-4 items-center text-xs sm:text-sm text-slate-500">
+              <div className="flex -space-x-2">
+                <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-yellow-300 to-pink-400 border border-white shadow-sm" />
+                <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 border border-white shadow-sm" />
+                <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-emerald-300 to-cyan-400 border border-white shadow-sm" />
+              </div>
+
+              <span className="inline-flex items-center text-white/80">
+                <span className="mr-1.5 text-base leading-none">⚡</span>
+                1–4 week delivery
+              </span>
+
+              <div className="space-x-2">
+                <span className="font-medium text-white/80">3+ playful launches</span>
+                <span className="text-white/80">·</span>
+                <span className="text-white/80">
+                  for businesses, creators & modern startup brands
+                </span>
               </div>
             </div>
+          </div>
 
             {/* Hero visual card */}
             <div className="relative" ref={cardRef}>
@@ -288,9 +290,8 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </section>
       {/* MARQUEE */}
       <Marquee />
-    </main>
+    </section>
   );
 }
