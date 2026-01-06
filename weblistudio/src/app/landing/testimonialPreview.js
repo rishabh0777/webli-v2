@@ -1,9 +1,25 @@
 "use client";
 
 import TestimonialCard from "@/components/testimonialCard";
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function TestimonialPreview() {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const ratingRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  const addCardRef = (el) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
+    }
+  };
+
   const testimonials = [
     {
       name: "Lion's den Cafe",
@@ -28,8 +44,52 @@ export default function TestimonialPreview() {
     },
   ];
 
+  useGSAP(
+    () => {
+      // initial states
+      gsap.set(headerRef.current, { opacity: 0, y: 30 });
+      gsap.set(ratingRef.current, { opacity: 0, y: 20 });
+      gsap.set(cardsRef.current, { opacity: 0, y: 40 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+        defaults: { ease: "power3.out" },
+      });
+
+      tl.to(headerRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+      })
+        .to(
+          ratingRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+          },
+          "-=0.4"
+        )
+        .to(
+          cardsRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.18,
+            duration: 0.7,
+          },
+          "-=0.2"
+        );
+    },
+    { scope: sectionRef }
+  );
+
   return (
     <section
+      ref={sectionRef}
       id="testimonials"
       aria-labelledby="testimonial-preview-heading"
       className="relative py-12 sm:py-16 lg:py-20 bg-black"
@@ -37,13 +97,16 @@ export default function TestimonialPreview() {
       itemType="https://schema.org/AggregateRating"
     >
       {/* INVISIBLE TRUST / REVIEW SEO SIGNAL */}
-      <meta itemProp="ratingValue" content="4.9" />
+      <meta itemProp="ratingValue" content="5" />
       <meta itemProp="reviewCount" content="3" />
       <meta itemProp="bestRating" content="5" />
-      <meta itemProp="worstRating" content="1" />
+      <meta itemProp="worstRating" content="0" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10">
+        <div
+          ref={headerRef}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10"
+        >
           <div>
             <h2
               id="testimonial-preview-heading"
@@ -61,11 +124,14 @@ export default function TestimonialPreview() {
             </p>
           </div>
 
-          <div className="text-xs sm:text-sm text-white/80">
+          <div
+            ref={ratingRef}
+            className="text-xs sm:text-sm text-white/80"
+          >
             Average satisfaction score
             <span className="inline-flex items-center ml-1 rounded-full bg-black/80 border border-amber-200 px-2 py-1 shadow-sm">
               <span className="mr-1 text-base leading-none">⭐</span>
-              <span className="font-semibold text-white/80">4.9</span>/5
+              <span className="font-semibold text-white/80">5</span>/5
             </span>
           </div>
         </div>
@@ -83,6 +149,7 @@ export default function TestimonialPreview() {
           {testimonials.map((testimonial, index) => (
             <article
               key={index}
+              ref={addCardRef}
               itemScope
               itemType="https://schema.org/Review"
               aria-label={`Review from ${testimonial.name}`}
