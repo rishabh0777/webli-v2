@@ -17,4 +17,12 @@ body{
   filter: drop-shadow(0 0 3px rgba(255, 251, 26, 0.8));
 }
 
+/* Prevent GSAP overlay flash on initial load */
+.menu-overlay-hidden {
+  transform: translateY(100%) scale(0.6);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+
 

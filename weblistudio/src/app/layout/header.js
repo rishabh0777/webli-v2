@@ -185,7 +185,7 @@ const Header = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="relative h-8 w-16 cursor-pointer text-sm uppercase tracking-widest text-white z-[999]"
         >
-          <span className="absolute inset-0 flex items-center justify-center opacity-0 text-zinc-800">
+          <span className="absolute inset-0 flex items-center justify-center opacity-0">
             Close
           </span>
           <span className="absolute inset-0 flex items-center justify-center">
@@ -197,19 +197,20 @@ const Header = () => {
       {/* OVERLAY */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 bg-gradient-to-br from-white via-yellow-300 via-yellow-100 to-white"
+        className="fixed inset-0 bg-gradient-to-br from-black via-zinc-900 to-zinc-800 text-white flex items-center justify-center overflow-y-auto will-change-transform menu-overlay-hidden"
       >
-        <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-5 md:gap-10 text-center md:text-left">
-          <h1 ref={titleRef} className="font-[bangers] tracking-wide text-3xl md:text-5xl font-bold text-zinc-800">
+
+        <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-6 md:gap-5 md:gap-10 text-center md:text-left">
+          <h1 ref={titleRef} className="font-[bangers] tracking-wide text-3xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-white to-yellow-100 bg-clip-text text-transparent px-1">
             Webli Studio
           </h1>
 
-          <p ref={paraRef} className="text-[0.8em] md:text-[0.9em] max-w-2xl text-zinc-600">
+          <p ref={paraRef} className="text-[0.8em] md:text-[0.9em] max-w-2xl text-white/80 px-4">
             Webli Studio is a digital creative studio focused on building modern, high-impact web experiences. We blend thoughtful design, smooth animations, and solid engineering to create websites that feel fast, intuitive, and visually powerful. Every project is crafted with precision to help brands stand out and scale confidently in the digital space.
           </p>
 
           {/* MENU (RESPONSIVE, ALWAYS VISIBLE) */}
-          <div className="flex flex-col md:flex-row md:flex-wrap gap-6 text-[0.9em] md:text-2xl font-bold text-zinc-800">
+          <div className="flex gap-6 text-[0.7em] md:text-2xl font-bold">
             {["Home", "Services", "Portfolio", "About", "Contact"].map(
               (item, i) => (
                 <Link
@@ -217,24 +218,35 @@ const Header = () => {
                   ref={addMenuRef}
                   href={item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "")}`}
                   onClick={() => setIsOpen(false)}
-                  className="group"
+                  className="hover:text-yellow-300 duration-300"
                 >
                   {item}
-                  <ArrowBigRight className="inline-block ml-2 group-hover:-rotate-45" size={15} />
+
                 </Link>
               )
             )}
           </div>
 
           {/* SOCIAL */}
-          <div className="flex gap-6 text-zinc-800 text-md">
-            <Instagram ref={addSocialRef} size={18} />
-            <Linkedin ref={addSocialRef} size={18} />
-            <Github ref={addSocialRef} size={18} />
+          <div className="flex gap-6 text-md">
+            <Instagram
+              className="cursor-pointer hover:text-yellow-300 duration-300"
+              onClick={() => {
+                window.open('https://www.instagram.com/webli_studio/', '_blank')
+              }} ref={addSocialRef} size={18} />
+            <Linkedin
+              className="cursor-pointer hover:text-yellow-300 duration-300"
+              onClick={() => {
+                window.open('https://www.linkedin.com/company/webli-studio/', '_blank')
+              }} ref={addSocialRef} size={18} />
+            <Github className="cursor-pointer hover:text-yellow-300 duration-300"
+              onClick={() => {
+                window.open('https://github.com/webli-studio', '_blank')
+              }} ref={addSocialRef} size={18} />
           </div>
 
           {/* FOOTER */}
-          <footer ref={footerRef} className="text-[0.8em] md:text-sm text-gray-700">
+          <footer ref={footerRef} className="text-[0.8em] md:text-sm">
             © {new Date().getFullYear()} Webli Studio. All rights reserved.
           </footer>
         </div>
