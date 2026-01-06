@@ -4,6 +4,7 @@ import React, { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Marquee from "@/components/marquee";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
   const lettersRef = useRef([]);
@@ -15,6 +16,8 @@ export default function Hero() {
   const buttonRef = useRef([])
   const tagRef = useRef(null);
   const bottomRef = useRef(null);
+
+  const router = useRouter();
 
   const addButtonRef = (el) => {
     if (el && !buttonRef.current.includes(el)) {
@@ -187,11 +190,20 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-              <button ref={addButtonRef} className="inline-flex items-center justify-center rounded-full bg-white text-xs sm:text-sm font-semibold tracking-tight text-black py-2.5 sm:py-3 px-5 sm:px-6 shadow-lg shadow-slate-400/50 hover:scale-105 active:scale-95 transition-transform duration-150 opacity-0">
+              <button
+              onClick={()=>{
+                router.push('/contact')
+              }}
+              ref={addButtonRef} className="inline-flex items-center justify-center rounded-full bg-white text-xs sm:text-sm font-semibold tracking-tight text-black py-2.5 sm:py-3 px-5 sm:px-6 shadow-lg shadow-slate-400/50 hover:scale-105 active:scale-95 transition-transform duration-150 opacity-0 cursor-pointer">
                 🚀 Start your project
               </button>
 
-              <button ref={addButtonRef} className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-xs sm:text-sm font-medium text-black py-2.5 sm:py-3 px-4 sm:px-5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-yellow-200 transition-all duration-150 opacity-0">
+              <button 
+              onClick={()=>{
+                router.push('/portfolio');
+              }}
+              ref={addButtonRef} 
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-xs sm:text-sm font-medium text-black py-2.5 sm:py-3 px-4 sm:px-5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-yellow-200 transition-all duration-150 opacity-0 cursor-pointer">
                 🎉 View showcase
               </button>
             </div>
@@ -309,7 +321,9 @@ export default function Hero() {
                         <p className="text-[0.65rem] sm:text-xs text-slate-500">Feedback from recent clients</p>
                       </div>
                     </div>
-                    <button className="text-[0.7rem] sm:text-xs font-medium text-slate-800 underline underline-offset-2 decoration-slate-400 hover:text-slate-900">
+                    <button onClick={()=>{
+                      window.open("https://www.launchhaus.in/", "_blank")
+                    }} className="text-[0.7rem] sm:text-xs font-medium text-slate-800 underline underline-offset-2 decoration-slate-400 hover:text-slate-900 cursor-pointer">
                       Peek latest build →
                     </button>
                   </div>
