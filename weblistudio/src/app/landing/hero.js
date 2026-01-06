@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import Marquee from "@/components/marquee";
 
 export default function Hero() {
@@ -11,85 +12,111 @@ export default function Hero() {
   const blobA = useRef(null);
   const blobB = useRef(null);
   const blobC = useRef(null);
+  const buttonRef = useRef([])
+  const tagRef = useRef(null);
+  const bottomRef = useRef(null);
 
-  useEffect(() => {
-    const chars = lettersRef.current;
-
-    // --- letter flag animation (entrance + gentle wave) ---
-    if (chars && chars.length) {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.fromTo(
-        chars,
-        {
-          y: () => gsap.utils.random(-120, 120),
-          x: () => gsap.utils.random(-120, 120),
-          opacity: 0,
-          rotate: () => gsap.utils.random(-90, 90),
-        },
-        {
-          y: 0,
-          x: 0,
-          opacity: 1,
-          rotate: 0,
-          duration: 1.15,
-          stagger: 0.04,
-        }
-      );
-
-      chars.forEach((char, i) => {
-        gsap.to(char, {
-          y: 6,
-          rotation: 2.5,
-          duration: 1.1,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true,
-          delay: 0.6 + i * 0.03,
-        });
-      });
+  const addButtonRef = (el) => {
+    if (el && !buttonRef.current.includes(el)) {
+      buttonRef.current.push(el);
     }
+  };
 
-    // --- tagline ---
-    if (taglineRef.current) {
-      gsap.fromTo(
-        taglineRef.current,
-        { y: 28, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, delay: 0.85, ease: "power3.out" }
-      );
-    }
-
-    // --- right visual card entrance ---
-    if (cardRef.current) {
-      gsap.fromTo(
-        cardRef.current,
-        { y: 18, opacity: 0, scale: 0.985 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.9, delay: 0.6, ease: "power3.out" }
-      );
-    }
-
-    // --- blobs subtle floating (loop) ---
-    const blobs = [blobA.current, blobB.current, blobC.current].filter(Boolean);
-    blobs.forEach((b, i) => {
-      gsap.to(b, {
-        y: i % 2 === 0 ? -12 : 12,
-        x: i === 1 ? -8 : 8,
-        duration: 8 + i * 2,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: i * 0.3,
-      });
-    });
-
-    return () => {
-      gsap.killTweensOf(chars);
-      gsap.killTweensOf(taglineRef.current);
-      gsap.killTweensOf(cardRef.current);
-      blobs.forEach((b) => gsap.killTweensOf(b));
-    };
+  // gsap.set for initial states
+  useGSAP(() => {
+    gsap.set(lettersRef.current, { y: 20, opacity: 0 });
+    gsap.set(taglineRef.current, { y: 20, opacity: 0 });
+    gsap.set(cardRef.current, { y: 30, opacity: 0 });
+    gsap.set([blobA.current, blobB.current, blobC.current], { y: 0 });
+    gsap.set(buttonRef.current, { y: 30, opacity: 0 });
   }, []);
 
+  // gsap animations on mount
+  useLayoutEffect(() => {
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    // Animate tag
+    tl.to(tagRef.current, {
+      y: 0,
+      opacity: 1,
+      ease: "power3.out",
+      duration: 0.6,
+    });
+
+    // Animate heading letters
+    tl.to(lettersRef.current, {
+      y: 0,
+      opacity: 1,
+      stagger: 0.05,
+      ease: "power3.out",
+      duration: 0.6,
+    },"-=0.2");
+
+    // Animate tagline
+    tl.to(
+      taglineRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        ease: "power3.out",
+        duration: 0.6,
+      },
+      "-=0.2"
+    );
+
+    // Animate buttons
+    tl.to(
+      buttonRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.1,
+        ease: "power3.out",
+        duration: 0.6,
+      },
+      "-=0.2"
+    );
+
+    // Animate bottom content
+    tl.to(
+      bottomRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        ease: "power3.out",
+        duration: 0.6,
+      },
+      "-=0.2"
+    );
+
+    // Animate card
+    tl.to(
+      cardRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        ease: "power3.out",
+        duration: 0.8,
+      },
+      "-=0.4"
+    );
+
+    // Floating blobs animation
+    gsap.to([blobA.current, blobB.current, blobC.current], {
+      y: 20,
+      duration: 6,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1,
+      stagger: {
+        each: 2,
+        from: "random",
+      },
+    });
+  }, []);
+
+
+ 
   return (
     <section
       aria-labelledby="hero-heading"
@@ -129,7 +156,7 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Hero text */}
           <div className="space-y-6 sm:space-y-7">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-3 py-2 shadow-sm shadow-slate-100/70 backdrop-blur">
+            <div ref={tagRef} className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-3 py-2 shadow-sm shadow-slate-100/70 backdrop-blur opacity-0">
               <span className="inline-flex h-1.5 w-1.5 rounded-full bg-gradient-to-br from-yellow-300 via-pink-400 to-blue-500 animate-[pulse_1.5s_ease-in-out_infinite]"></span>
               <span className="text-xs font-medium text-black/90">
                 MERN + Animated Web Studio for Modern Brands
@@ -138,8 +165,9 @@ export default function Hero() {
 
             <div className="space-y-2">
               <h1
+                ref={lettersRef}
                 id="hero-heading"
-                className="text-4xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-tight"
+                className="text-4xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-tight opacity-0"
               >
                 <span className="md:text-3xl text-xl">Webli Studio — </span>
                 We Build.
@@ -150,7 +178,7 @@ export default function Hero() {
 
               <p
                 ref={taglineRef}
-                className="text-base sm:text-lg text-white/90 max-w-xl"
+                className="text-base sm:text-lg text-white/90 max-w-xl opacity-0"
               >
                 We build modern, animated, high-performance websites with MERN,
                 GSAP and Framer Motion — clean UI, smooth interactions, and designs
@@ -159,16 +187,16 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-              <button className="inline-flex items-center justify-center rounded-full bg-white text-xs sm:text-sm font-semibold tracking-tight text-black py-2.5 sm:py-3 px-5 sm:px-6 shadow-lg shadow-slate-400/50 hover:scale-105 active:scale-95 transition-transform duration-150">
+              <button ref={addButtonRef} className="inline-flex items-center justify-center rounded-full bg-white text-xs sm:text-sm font-semibold tracking-tight text-black py-2.5 sm:py-3 px-5 sm:px-6 shadow-lg shadow-slate-400/50 hover:scale-105 active:scale-95 transition-transform duration-150 opacity-0">
                 🚀 Start your project
               </button>
 
-              <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-xs sm:text-sm font-medium text-black py-2.5 sm:py-3 px-4 sm:px-5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-yellow-200 transition-all duration-150">
+              <button ref={addButtonRef} className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-xs sm:text-sm font-medium text-black py-2.5 sm:py-3 px-4 sm:px-5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-yellow-200 transition-all duration-150 opacity-0">
                 🎉 View showcase
               </button>
             </div>
 
-            <div className="flex flex-wrap gap-4 items-center text-xs sm:text-sm text-slate-500">
+            <div ref={bottomRef} className="flex flex-wrap gap-4 items-center text-xs sm:text-sm text-slate-500 opacity-0">
               <div className="flex -space-x-2">
                 <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-yellow-300 to-pink-400 border border-white shadow-sm" />
                 <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 border border-white shadow-sm" />
@@ -191,7 +219,7 @@ export default function Hero() {
           </div>
 
             {/* Hero visual card */}
-            <div className="relative" ref={cardRef}>
+            <div className="relative opacity-0" ref={cardRef}>
               <div className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]" />
               <div className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
 
