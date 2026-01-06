@@ -11,9 +11,39 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutPreview() {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
+  const headingRef = useRef(null);
+  const tagLineRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
+      // Heading Animation
+      gsap.from(headingRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 90%",
+        },
+      });
+
+      // Tagline Animation
+      gsap.from(tagLineRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: tagLineRef.current,
+          start: "top 90%",
+        },
+      });
+
+      // Cards Animation
+
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
 
@@ -29,7 +59,21 @@ export default function AboutPreview() {
           },
         });
       });
+
+      // Button Animation
+      gsap.from(buttonRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.4,
+        scrollTrigger: {
+          trigger: buttonRef.current,
+          start: "top 90%",
+        },
+      });
     }, sectionRef);
+
 
     return () => ctx.revert();
   }, []);
@@ -74,6 +118,7 @@ export default function AboutPreview() {
         {/* Header */}
         <div className="mb-8 sm:mb-10">
           <h2
+            ref={headingRef}
             id="about-preview-heading"
             className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white"
           >
@@ -84,7 +129,7 @@ export default function AboutPreview() {
             different?
           </h2>
 
-          <p className="mt-2 text-base sm:text-lg text-white/80 max-w-xl">
+          <p ref={tagLineRef} className="mt-2 text-base sm:text-lg text-white/80 max-w-xl">
             Not just websites — playful launch experiences designed to convert,
             impress and stay memorable.
           </p>
@@ -113,7 +158,7 @@ export default function AboutPreview() {
                   {card.badge}
                 </span>
 
-                <h3 className="mt-4 text-lg sm:text-xl font-semibold tracking-tight text-white">
+                <h3 className="mt-4 text-lg sm:text-xl font-semibold tracking-tight text-white tracking-[0.09em]">
                   {card.title}
                 </h3>
 
@@ -126,7 +171,7 @@ export default function AboutPreview() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-10">
+        <div ref={buttonRef} className="text-center mt-10">
           <Link
             href="/about"
             className="inline-flex items-center gap-3 text-sm sm:text-base tracking-wide uppercase text-white/80 hover:text-black px-8 py-4 border border-white/20 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-200 transition"
