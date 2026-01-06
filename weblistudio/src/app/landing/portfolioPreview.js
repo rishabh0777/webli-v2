@@ -1,17 +1,77 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PortfolioCard from "@/components/portfolioCard";
 import { projects } from "@/projectData";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PortfolioPreview() {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const ctaRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  const addCardRef = (el) => {
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
+    }
+  };
+
   // get 3 projects only
   const threeProjects = projects.slice(0, 3);
 
+  useGSAP(
+    () => {
+      // initial states
+      gsap.set(headerRef.current, { opacity: 0, y: 30 });
+      gsap.set(ctaRef.current, { opacity: 0, y: 20 });
+      gsap.set(cardsRef.current, { opacity: 0, y: 40 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+        defaults: { ease: "power3.out" },
+      });
+
+      tl.to(headerRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+      })
+        .to(
+          cardsRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.15,
+            duration: 0.7,
+          },
+          "-=0.3"
+        )
+        .to(
+          ctaRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+          },
+          "-=0.4"
+        );
+    },
+    { scope: sectionRef }
+  );
+
   return (
     <section
+      ref={sectionRef}
       id="showcase"
       aria-labelledby="portfolio-preview-heading"
       className="relative py-12 sm:py-16 lg:py-20"
@@ -23,7 +83,10 @@ export default function PortfolioPreview() {
       />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10">
+        <div
+          ref={headerRef}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10"
+        >
           <div>
             <h2
               id="portfolio-preview-heading"
@@ -41,7 +104,7 @@ export default function PortfolioPreview() {
             </p>
           </div>
 
-          <div className="text-center mt-16">
+          <div ref={ctaRef} className="text-center mt-16">
             <Link
               href="/services"
               aria-label="View Webli Studio portfolio"
@@ -63,7 +126,11 @@ export default function PortfolioPreview() {
           />
 
           {threeProjects.map((project, i) => (
-            <article key={i} aria-label={`Project by Webli Studio`}>
+            <article
+              key={i}
+              ref={addCardRef}
+              aria-label={`Project by Webli Studio`}
+            >
               <PortfolioCard project={project} />
             </article>
           ))}
