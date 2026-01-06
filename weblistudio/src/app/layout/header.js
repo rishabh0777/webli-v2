@@ -12,11 +12,12 @@ const Header = () => {
 
   const btnRef = useRef(null);
   const overlayRef = useRef(null);
+  const headerRef = useRef(null);
   const tl = useRef(null);
 
   // content refs
   const menuRefs = useRef([]);
-  const socialRefs = useRef([]);
+  const socialRefs = useRef([]); 
   const footerRef = useRef(null);
   const titleRef = useRef(null);
   const paraRef = useRef(null);
@@ -43,6 +44,8 @@ const Header = () => {
       pointerEvents: "none",
     });
 
+    gsap.set(headerRef.current, { opacity: 0, y: -20 });
+
     gsap.set(btnRef.current.children[0], { opacity: 0, x: "50%" });
     gsap.set(btnRef.current.children[1], { opacity: 1, x: "0%" });
 
@@ -54,6 +57,17 @@ const Header = () => {
     gsap.set(menuRefs.current, { autoAlpha: 0, x: 40 });
     gsap.set(socialRefs.current, { autoAlpha: 0, y: 20 });
     gsap.set(footerRef.current, { autoAlpha: 0, y: 20 });
+  }, []);
+
+  /* ---------------- Header Animation ---------------- */
+  useGSAP(() => {
+    gsap.to(headerRef.current, {
+      autoAlpha: 1,
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power3.out",
+    });
   }, []);
 
   /* ---------------- Overlay + Button ---------------- */
@@ -177,7 +191,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-[999]">
       {/* NAV */}
-      <div className="flex justify-between px-5 md:px-12 py-5">
+      <div ref={headerRef} className="flex justify-between px-5 md:px-12 py-5 opacity-0">
         <Image src="/logo/primaryLogoWhite.svg" alt="Webli" width={120} height={48} />
 
         <div
