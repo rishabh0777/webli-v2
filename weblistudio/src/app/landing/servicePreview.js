@@ -35,13 +35,13 @@ export default function ServicePreview() {
       gsap.set(headerRef.current, { opacity: 0, y: 30 });
       gsap.set(chipsRef.current, { opacity: 0, y: 20 });
       gsap.set(cardsRef.current, { opacity: 0, y: 40 });
-      gsap.set(ctaRef.current, { opacity: 0, y: 20 });
+      gsap.set(ctaRef.current, { opacity: 0, y: 30 });
 
       /* ---------- TIMELINE ---------- */
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 90%",
         },
         defaults: { ease: "power3.out" },
       });
@@ -76,9 +76,9 @@ export default function ServicePreview() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.5,
+            duration: 1,
           },
-          "-=0.3"
+          "-=0.4"
         );
     },
     { scope: sectionRef }
@@ -198,8 +198,9 @@ export default function ServicePreview() {
         </div>
 
         {/* CTA */}
-        <div ref={ctaRef} className="text-center mt-10">
+        <div className="text-center mt-10">
           <Link
+            ref={ctaRef}
             href="/services"
             aria-label="View all Webli Studio services"
             className="inline-flex items-center gap-3 text-sm sm:text-base tracking-wide uppercase text-white/80 hover:text-black px-8 py-4 border border-white/20 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-200 transition"
