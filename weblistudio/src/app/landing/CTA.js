@@ -1,13 +1,66 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { useRouter } from "next/navigation";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CTA() {
   const router = useRouter();
 
+  const sectionRef = useRef(null);
+  const cardRef = useRef(null);
+  const textRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useGSAP(
+    () => {
+      // initial states
+      gsap.set(cardRef.current, { opacity: 0, y: 40 });
+      gsap.set(textRef.current, { opacity: 0, y: 20 });
+      gsap.set(buttonRef.current, { opacity: 0, y: 20 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+        defaults: { ease: "power3.out" },
+      });
+
+      tl.to(cardRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+      })
+        .to(
+          textRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+          },
+          "-=0.4"
+        )
+        .to(
+          buttonRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+          },
+          "-=0.3"
+        );
+    },
+    { scope: sectionRef }
+  );
+
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="cta-heading"
       className="relative py-12 sm:py-16 lg:py-20 bg-black"
     >
@@ -18,9 +71,12 @@ export default function CTA() {
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-r from-yellow-300 via-white to-yellow-100 p-1 shadow-yellow-500/30 shadow-lg hover:shadow-yellow-500/50 hover:shadow-xl transition-shadow duration-300">
+        <div
+          ref={cardRef}
+          className="relative rounded-3xl bg-gradient-to-r from-yellow-300 via-white to-yellow-100 p-1 shadow-yellow-500/30 shadow-lg hover:shadow-yellow-500/50 hover:shadow-xl transition-shadow duration-300"
+        >
           <div className="rounded-3xl bg-black backdrop-blur-sm px-5 sm:px-8 py-7 sm:py-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-            <div className="space-y-2">
+            <div ref={textRef} className="space-y-2">
               <p className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-300 via-white to-yellow-100 text-black text-[0.7rem] sm:text-xs font-medium px-2.5 py-1 shadow-sm">
                 New slots every month
               </p>
@@ -47,7 +103,7 @@ export default function CTA() {
             </div>
 
             {/* CTA Button */}
-            <div className="flex flex-col gap-3 w-full md:w-auto">
+            <div ref={buttonRef} className="flex flex-col gap-3 w-full md:w-auto">
               <button
                 onClick={() => router.push("/contact")}
                 aria-label="Start a web development project with Webli Studio"
