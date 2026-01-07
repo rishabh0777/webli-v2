@@ -190,7 +190,15 @@ export default function AboutPage() {
           <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
             Our Story
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="relative grid md:grid-cols-3 gap-6">
+            <div
+            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
             {storyCards.map((card) => (
               <GradientCard
                 key={card.title}
@@ -208,7 +216,15 @@ export default function AboutPage() {
           <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
             How We Build
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="relative grid md:grid-cols-3 gap-6">
+            <div
+            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
             {processCards.map((card) => (
               <GradientCard
                 key={card.title}
@@ -226,7 +242,15 @@ export default function AboutPage() {
           <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
             Why Webli Studio
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="relative grid md:grid-cols-3 gap-6">
+            <div
+            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
             {beliefCards.map((card) => (
               <GradientCard
                 key={card.title}

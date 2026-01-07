@@ -75,6 +75,14 @@ export default function CTA() {
           ref={cardRef}
           className="relative rounded-3xl bg-gradient-to-r from-yellow-300 via-white to-yellow-100 p-1 shadow-yellow-500/30 shadow-lg hover:shadow-yellow-500/50 hover:shadow-xl transition-shadow duration-300"
         >
+          <div
+            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
+            aria-hidden="true"
+          />
           <div className="rounded-3xl bg-black backdrop-blur-sm px-5 sm:px-8 py-7 sm:py-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
             <div ref={textRef} className="space-y-2">
               <p className="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-300 via-white to-yellow-100 text-black text-[0.7rem] sm:text-xs font-medium px-2.5 py-1 shadow-sm">
