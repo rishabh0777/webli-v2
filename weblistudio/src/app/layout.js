@@ -37,6 +37,19 @@ export const metadata = {
     "animated websites",
     "GSAP animation websites",
     "Indian web development studio",
+    "SEO-optimized websites",
+    "modern web design",
+    "startup websites",
+    "brand websites",
+    "high-performance web development",
+    "custom web solutions",
+    "responsive web design",
+    "e-commerce development",
+    "progressive web apps",
+    "UI/UX design services",
+    "website maintenance and support",
+    "digital presence solutions",
+    "full-stack web development",
   ],
 
   robots: {
@@ -52,7 +65,7 @@ export const metadata = {
     siteName: "Webli Studio",
     images: [
       {
-        url: "/logo/primaryLogoWhite.svg",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "Webli Studio — Animated Web Development Studio",
@@ -67,7 +80,11 @@ export const metadata = {
     title: "Webli Studio — We Build. You Launch.",
     description:
       "Modern MERN + GSAP animated websites crafted for startups and brands.",
-    images: ["/logo/primaryLogoWhite.svg"],
+    images: [
+      "/og.png",
+      "/logo/primaryLogoWhite.svg",
+      "/logo/primaryLogoBlack.svg",
+    ],
   },
 
   alternates: {
