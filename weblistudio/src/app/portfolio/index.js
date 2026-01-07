@@ -12,46 +12,70 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Portfolio() {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+  const textRef = useRef(null);
 
-  useGSAP(() => {
-    const ctx = gsap.context(() => {
-      /* ---------- Heading ---------- */
-      gsap.from(".portfolio-head", {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: "power3.out",
-      });
+  useGSAP(
+    () => {
+      /* ---------- HEADER ---------- */
+      gsap.fromTo(
+        headerRef.current.children,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
 
-      /* ---------- Cards ---------- */
-      gsap.from(".portfolio-card", {
-        opacity: 0,
-        y: 60,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".portfolio-grid",
-          start: "top 80%",
-        },
-      });
+      /* ---------- GRID + CARDS ---------- */
+      const cards = gridRef.current.querySelectorAll(".portfolio-card");
 
-      /* ---------- SEO Text ---------- */
-      gsap.from(".portfolio-text", {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".portfolio-text",
-          start: "top 85%",
-        },
-      });
-    }, sectionRef);
+      gsap.fromTo(
+        cards,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
 
-    return () => ctx.revert();
-  }, []);
+      /* ---------- SEO TEXT ---------- */
+      gsap.fromTo(
+        textRef.current.children,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section
@@ -60,8 +84,12 @@ export default function Portfolio() {
       className="relative py-12 sm:py-16 lg:py-20"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
         {/* ---------- Header ---------- */}
-        <div className="portfolio-head flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10">
+        <div
+          ref={headerRef}
+          className="portfolio-head flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 sm:mb-10"
+        >
           <div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white">
               Little websites,{" "}
@@ -75,13 +103,14 @@ export default function Portfolio() {
               playgrounds of motion, interaction and modern UI systems.
             </p>
           </div>
-
-          
         </div>
 
         {/* ---------- Grid ---------- */}
-        <div className="portfolio-grid relative grid md:grid-cols-3 gap-5 sm:gap-6">
-          {/* Floating blobs */}
+        <div
+          ref={gridRef}
+          className="portfolio-grid relative grid md:grid-cols-3 gap-5 sm:gap-6"
+        >
+          {/* Floating blobs (unchanged) */}
           <div className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]" />
           <div className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]" />
 
@@ -93,7 +122,10 @@ export default function Portfolio() {
         </div>
 
         {/* ---------- SEO Paragraphs ---------- */}
-        <div className="portfolio-text mt-16 max-w-3xl space-y-6">
+        <div
+          ref={textRef}
+          className="portfolio-text mt-16 max-w-3xl space-y-6"
+        >
           <p className="text-white/75 leading-relaxed">
             Webli Studio’s portfolio showcases a collection of animated,
             motion-driven websites built using modern frontend technologies.
@@ -110,6 +142,7 @@ export default function Portfolio() {
             devices.
           </p>
         </div>
+
       </div>
     </section>
   );
