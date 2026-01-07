@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./layout/header";
 import Footer from "./layout/footer";
 import { ReactLenis } from 'lenis/react';
+import { Toaster } from "react-hot-toast";
 
 
 const bangers = Bangers({
@@ -103,6 +104,16 @@ export default function RootLayout({ children }) {
         <ReactLenis root>
         <Header />
         {children}
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#000",
+              color: "#fff",
+              border: "1px solid rgba(255,255,255,0.1)",
+            },
+          }}
+        />
         <Footer />
         </ReactLenis>
       </body>
