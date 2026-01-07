@@ -251,7 +251,7 @@ const Header = () => {
             <Linkedin
               className="cursor-pointer hover:text-yellow-300 duration-300"
               onClick={() => {
-                window.open('https://www.linkedin.com/company/webli-studio/', '_blank')
+                window.open('https://www.linkedin.com/in/webli-studio-creative-web-development-agency-250a5336b/', '_blank')
               }} ref={addSocialRef} size={18} />
             <Github className="cursor-pointer hover:text-yellow-300 duration-300"
               onClick={() => {

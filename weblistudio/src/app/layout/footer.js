@@ -28,9 +28,9 @@ const Footer = () => {
             </div>
             <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-white/80">
               <div className="flex gap-3">
-                <a href="#" className="text-purple-500 glow"><InstagramIcon size={20} /></a>
-                <a href="#" className="glow"><GithubIcon size={20} /></a>
-                <a href="#" className="text-blue-500 glow"><LinkedinIcon size={20} /></a>
+                <a href="https://www.instagram.com/webli_studio/" target="_blank" className="text-purple-500 glow"><InstagramIcon size={20} /></a>
+                <a href="https://github.com/webli-studio" target="_blank" className="glow"><GithubIcon size={20} /></a>
+                <a href="https://www.linkedin.com/in/webli-studio-creative-web-development-agency-250a5336b/" target="_blank" className="text-blue-500 glow"><LinkedinIcon size={20} /></a>
               </div>
               <span className="hidden sm:inline text-white/70">•</span>
               <span>© <span id="year">{
