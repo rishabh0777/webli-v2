@@ -27,24 +27,25 @@ export default function Hero() {
 
   // gsap.set for initial states
   useGSAP(() => {
-    gsap.set(lettersRef.current, { y: 20, opacity: 0 });
-    gsap.set(taglineRef.current, { y: 20, opacity: 0 });
-    gsap.set(cardRef.current, { y: 30, opacity: 0 });
+    gsap.set(lettersRef.current, { y: 50, opacity: 0 });
+    gsap.set(taglineRef.current, { y: 50, opacity: 0 });
+    gsap.set(cardRef.current, { y: 50, opacity: 0 });
     gsap.set([blobA.current, blobB.current, blobC.current], { y: 0 });
-    gsap.set(buttonRef.current, { y: 30, opacity: 0 });
+    gsap.set(buttonRef.current, { y: 40, opacity: 0 });
   }, []);
 
   // gsap animations on mount
   useLayoutEffect(() => {
-    const tl = gsap.timeline({ delay: 0.2 });
+    const tl = gsap.timeline({ delay: 0.8 });
 
     // Animate tag
     tl.to(tagRef.current, {
       y: 0,
       opacity: 1,
+      delay:0.3,
       ease: "power3.out",
-      duration: 0.6,
-    });
+      duration: 0.8,
+    },"b");
 
     // Animate heading letters
     tl.to(lettersRef.current, {
@@ -52,8 +53,20 @@ export default function Hero() {
       opacity: 1,
       stagger: 0.05,
       ease: "power3.out",
-      duration: 0.6,
-    },"-=0.2");
+      duration: 0.8,
+    },"b");
+
+    // Animate card
+    tl.to(
+      cardRef.current,
+      {
+        y: 0,
+        opacity: 1,
+        ease: "power3.out",
+        duration: 1.2,
+      },
+      "b"
+    );
 
     // Animate tagline
     tl.to(
@@ -62,9 +75,9 @@ export default function Hero() {
         y: 0,
         opacity: 1,
         ease: "power3.out",
-        duration: 0.6,
+        duration: 0.8,
       },
-      "-=0.2"
+      "b"
     );
 
     // Animate buttons
@@ -75,9 +88,9 @@ export default function Hero() {
         opacity: 1,
         stagger: 0.1,
         ease: "power3.out",
-        duration: 0.6,
+        duration: 0.8,
       },
-      "-=0.2"
+      "b"
     );
 
     // Animate bottom content
@@ -87,22 +100,12 @@ export default function Hero() {
         y: 0,
         opacity: 1,
         ease: "power3.out",
-        duration: 0.6,
-      },
-      "-=0.2"
-    );
-
-    // Animate card
-    tl.to(
-      cardRef.current,
-      {
-        y: 0,
-        opacity: 1,
-        ease: "power3.out",
         duration: 0.8,
       },
-      "-=0.4"
+      "b"
     );
+
+    
 
     // Floating blobs animation
     gsap.to([blobA.current, blobB.current, blobC.current], {
