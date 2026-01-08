@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
-import { ArrowBigRight, Instagram, Github, Linkedin } from "lucide-react";
+import { Instagram, Github, Linkedin } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +17,7 @@ const Header = () => {
 
   // content refs
   const menuRefs = useRef([]);
-  const socialRefs = useRef([]); 
+  const socialRefs = useRef([]);
   const footerRef = useRef(null);
   const titleRef = useRef(null);
   const paraRef = useRef(null);
@@ -41,7 +41,6 @@ const Header = () => {
       y: "100%",
       scale: 0.6,
       borderRadius: "50%",
-      pointerEvents: "none",
     });
 
     gsap.set(headerRef.current, { opacity: 0, y: -20 });
@@ -59,11 +58,10 @@ const Header = () => {
     gsap.set(footerRef.current, { autoAlpha: 0, y: 20 });
   }, []);
 
-  /* ---------------- Header Animation ---------------- */
+  /* ---------------- Header Fade ---------------- */
   useGSAP(() => {
     gsap.to(headerRef.current, {
       autoAlpha: 1,
-      opacity: 1,
       y: 0,
       duration: 1.2,
       ease: "power3.out",
@@ -93,7 +91,6 @@ const Header = () => {
             borderRadius: "0%",
             duration: 0.9,
             ease: "power3.out",
-            pointerEvents: "auto",
           },
           "-=0.2"
         );
@@ -109,7 +106,6 @@ const Header = () => {
             borderRadius: "50%",
             duration: 0.8,
             ease: "power3.inOut",
-            pointerEvents: "none",
           },
           "-=0.2"
         );
@@ -118,17 +114,14 @@ const Header = () => {
     tl.current.play();
   }, [isOpen]);
 
-  /* ---------------- Content Animation (EVERY OPEN) ---------------- */
+  /* ---------------- Content Animation ---------------- */
   useGSAP(() => {
     if (!contentTl.current) {
       contentTl.current = gsap.timeline({ paused: true });
     }
 
     if (isOpen) {
-      gsap.set([titleRef.current, paraRef.current], {
-        autoAlpha: 0,
-        y: 30,
-      });
+      gsap.set([titleRef.current, paraRef.current], { autoAlpha: 0, y: 30 });
       gsap.set(menuRefs.current, { autoAlpha: 0, x: 40 });
       gsap.set(socialRefs.current, { autoAlpha: 0, y: 20 });
       gsap.set(footerRef.current, { autoAlpha: 0, y: 20 });
@@ -145,12 +138,7 @@ const Header = () => {
         })
         .to(
           paraRef.current,
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power3.out",
-          },
+          { autoAlpha: 1, y: 0, duration: 0.6 },
           "-=0.4"
         )
         .to(
@@ -160,7 +148,6 @@ const Header = () => {
             x: 0,
             stagger: 0.08,
             duration: 0.5,
-            ease: "power3.out",
           },
           "-=0.3"
         )
@@ -176,11 +163,7 @@ const Header = () => {
         )
         .to(
           footerRef.current,
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.4,
-          },
+          { autoAlpha: 1, y: 0, duration: 0.4 },
           "-=0.3"
         );
 
@@ -191,76 +174,80 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-[999]">
       {/* NAV */}
-      <div ref={headerRef} className="flex justify-between px-5 md:px-12 py-5 opacity-0">
-        <Image src="/logo/primaryLogoWhite.svg" alt="Webli" width={120} height={48} />
+      <div
+        ref={headerRef}
+        className="flex justify-between px-5 md:px-12 py-5 opacity-0"
+      >
+        <Image
+          src="/logo/primaryLogoWhite.svg"
+          alt="Webli"
+          width={120}
+          height={48}
+        />
+      </div>
 
-        <div
-          ref={btnRef}
-          onClick={() => setIsOpen(!isOpen)}
-          className="relative h-8 w-16 cursor-pointer text-sm uppercase tracking-widest text-white z-[1999]"
-        >
-          <span className="absolute inset-0 flex items-center justify-center opacity-0">
-            Close
-          </span>
-          <span className="absolute inset-0 flex items-center justify-center">
-            Menu
-          </span>
-        </div>
+      {/* MENU BUTTON (ABOVE OVERLAY) */}
+      <div
+        ref={btnRef}
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed top-5 right-5 h-8 w-16 cursor-pointer text-sm uppercase tracking-widest text-white z-[2000]"
+      >
+        <span className="absolute inset-0 flex items-center justify-center opacity-0">
+          Close
+        </span>
+        <span className="absolute inset-0 flex items-center justify-center">
+          Menu
+        </span>
       </div>
 
       {/* OVERLAY */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 bg-gradient-to-br from-black via-zinc-900 to-zinc-800 text-white flex items-center justify-center overflow-y-auto will-change-transform menu-overlay-hidden"
+        className={`fixed inset-0 bg-gradient-to-br from-black via-zinc-900 to-zinc-800 
+        text-white flex items-center justify-center overflow-y-auto will-change-transform
+        z-[998] ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
       >
-
-        <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-6 md:gap-5 md:gap-10 text-center md:text-left">
-          <h1 ref={titleRef} className="font-[bangers] tracking-wide text-3xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-white to-yellow-100 bg-clip-text text-transparent px-1">
+        <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-6 md:gap-10 text-center">
+          <h1
+            ref={titleRef}
+            className="font-[bangers] tracking-wide text-3xl md:text-5xl font-bold 
+            bg-gradient-to-r px-1 from-yellow-400 via-white to-yellow-100 bg-clip-text text-transparent"
+          >
             Webli Studio
           </h1>
 
-          <p ref={paraRef} className="text-[0.8em] md:text-[0.9em] max-w-2xl text-white/80 px-4">
-            Webli Studio is a digital creative studio focused on building modern, high-impact web experiences. We blend thoughtful design, smooth animations, and solid engineering to create websites that feel fast, intuitive, and visually powerful. Every project is crafted with precision to help brands stand out and scale confidently in the digital space.
+          <p
+            ref={paraRef}
+            className="text-[0.8em] md:text-[0.9em] max-w-2xl text-white/80"
+          >
+            Webli Studio is a digital creative studio focused on building modern,
+            high-impact web experiences with smooth animations and solid
+            engineering.
           </p>
 
-          {/* MENU (RESPONSIVE, ALWAYS VISIBLE) */}
           <div className="flex gap-6 text-[0.7em] md:text-2xl font-bold">
             {["Home", "Services", "Portfolio", "About", "Contact"].map(
               (item, i) => (
                 <Link
                   key={i}
                   ref={addMenuRef}
-                  href={item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "")}`}
+                  href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
                   className="hover:text-yellow-300 duration-300"
                 >
                   {item}
-
                 </Link>
               )
             )}
           </div>
 
-          {/* SOCIAL */}
-          <div className="flex gap-6 text-md">
-            <Instagram
-              className="cursor-pointer hover:text-yellow-300 duration-300"
-              onClick={() => {
-                window.open('https://www.instagram.com/webli_studio/', '_blank')
-              }} ref={addSocialRef} size={18} />
-            <Linkedin
-              className="cursor-pointer hover:text-yellow-300 duration-300"
-              onClick={() => {
-                window.open('https://www.linkedin.com/in/webli-studio-creative-web-development-agency-250a5336b/', '_blank')
-              }} ref={addSocialRef} size={18} />
-            <Github className="cursor-pointer hover:text-yellow-300 duration-300"
-              onClick={() => {
-                window.open('https://github.com/webli-studio', '_blank')
-              }} ref={addSocialRef} size={18} />
+          <div className="flex gap-6">
+            <Instagram ref={addSocialRef} size={18} />
+            <Linkedin ref={addSocialRef} size={18} />
+            <Github ref={addSocialRef} size={18} />
           </div>
 
-          {/* FOOTER */}
-          <footer ref={footerRef} className="text-[0.8em] md:text-sm">
+          <footer ref={footerRef} className="text-sm">
             © {new Date().getFullYear()} Webli Studio. All rights reserved.
           </footer>
         </div>

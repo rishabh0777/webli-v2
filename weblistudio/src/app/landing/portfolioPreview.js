@@ -106,7 +106,7 @@ export default function PortfolioPreview() {
 
           <div ref={ctaRef} className="text-center mt-16">
             <Link
-              href="/services"
+              href="/portfolio"
               aria-label="View Webli Studio portfolio"
               className="inline-flex items-center gap-3 text-sm sm:text-base tracking-wide uppercase text-white/80 hover:text-black px-8 py-4 border border-white/20 rounded-full hover:bg-gradient-to-r from-yellow-400 via-white to-yellow-200 transition about-cta-btn"
             >
