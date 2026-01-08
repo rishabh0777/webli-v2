@@ -224,10 +224,10 @@ export default function Hero() {
               </span>
 
               <div className="space-x-2">
-                <span className="font-medium text-white/80">3+ playful launches</span>
+                <span className="font-medium text-white/80">5 Beautyful launches</span>
                 <span className="text-white/80">·</span>
                 <span className="text-white/80">
-                  for businesses, creators & modern startup brands
+                  for businesses & modern startup brands
                 </span>
               </div>
             </div>

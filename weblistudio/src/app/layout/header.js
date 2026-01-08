@@ -197,7 +197,7 @@ const Header = () => {
         <div
           ref={btnRef}
           onClick={() => setIsOpen(!isOpen)}
-          className="relative h-8 w-16 cursor-pointer text-sm uppercase tracking-widest text-white z-[999]"
+          className="relative h-8 w-16 cursor-pointer text-sm uppercase tracking-widest text-white z-[1999]"
         >
           <span className="absolute inset-0 flex items-center justify-center opacity-0">
             Close
