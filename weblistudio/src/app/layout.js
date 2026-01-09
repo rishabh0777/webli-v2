@@ -72,6 +72,12 @@ export const metadata = {
         alt: "Webli Studio — Animated Web Development Studio",
       },
     ],
+    icons: {
+      icon: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+      chrome: ["/android-chrome-192x192.png", "/android-chrome-512x512.png"],
+      favicons: ["/favicon-16x16.png", "/favicon-32x32.png"],
+    },
     locale: "en_IN",
     type: "website",
   },
