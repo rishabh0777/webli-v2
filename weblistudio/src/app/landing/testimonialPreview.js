@@ -46,7 +46,6 @@ export default function TestimonialPreview() {
 
   useGSAP(
     () => {
-      // initial states
       gsap.set(headerRef.current, { opacity: 0, y: 30 });
       gsap.set(ratingRef.current, { opacity: 0, y: 20 });
       gsap.set(cardsRef.current, { opacity: 0, y: 40 });
@@ -93,15 +92,7 @@ export default function TestimonialPreview() {
       id="testimonials"
       aria-labelledby="testimonial-preview-heading"
       className="relative py-12 sm:py-16 lg:py-20 bg-black"
-      itemScope
-      itemType="https://schema.org/AggregateRating"
     >
-      {/* INVISIBLE TRUST / REVIEW SEO SIGNAL */}
-      <meta itemProp="ratingValue" content="5" />
-      <meta itemProp="reviewCount" content="3" />
-      <meta itemProp="bestRating" content="5" />
-      <meta itemProp="worstRating" content="0" />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div
           ref={headerRef}
@@ -112,7 +103,7 @@ export default function TestimonialPreview() {
               id="testimonial-preview-heading"
               className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[0.09em] text-white"
             >
-              People who love their
+              People who love their{" "}
               <span className="bg-gradient-to-r from-yellow-100 via-yellow-300 to-white bg-clip-text text-transparent">
                 funky websites.
               </span>
@@ -124,10 +115,7 @@ export default function TestimonialPreview() {
             </p>
           </div>
 
-          <div
-            ref={ratingRef}
-            className="text-xs sm:text-sm text-white/80"
-          >
+          <div ref={ratingRef} className="text-xs sm:text-sm text-white/80">
             Average satisfaction score
             <span className="inline-flex items-center ml-1 rounded-full bg-black/80 border border-amber-200 px-2 py-1 shadow-sm">
               <span className="mr-1 text-base leading-none">⭐</span>
@@ -150,12 +138,8 @@ export default function TestimonialPreview() {
             <article
               key={index}
               ref={addCardRef}
-              itemScope
-              itemType="https://schema.org/Review"
-              aria-label={`Review from ${testimonial.name}`}
+              aria-label={`Testimonial from ${testimonial.name}`}
             >
-              <meta itemProp="author" content={testimonial.name} />
-              <meta itemProp="reviewRating" content="5" />
               <TestimonialCard testimonial={testimonial} />
             </article>
           ))}
