@@ -158,7 +158,7 @@ export default function AboutPreview() {
                   {card.badge}
                 </span>
 
-                <h3 className="mt-4 text-lg sm:text-xl font-semibold tracking-tight text-white tracking-[0.09em]">
+                <h3 className="mt-4 text-lg sm:text-xl font-semibold text-white tracking-[0.09em]">
                   {card.title}
                 </h3>
 

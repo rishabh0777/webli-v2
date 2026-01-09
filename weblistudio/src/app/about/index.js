@@ -8,6 +8,47 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ============================
+   SEO METADATA (SERVER-SAFE)
+============================ */
+export const metadata = {
+  title: "About Webli Studio",
+  description:
+    "Learn about Webli Studio, our motion-first approach, and the founder behind our animated, high-performance web experiences.",
+  keywords: [
+    "Webli Studio",
+    "about Webli Studio",
+    "motion first web design",
+    "GSAP website",
+    "MERN web agency",
+    "React web developer",
+    "Rishabh Srivastava Webli",
+  ],
+  openGraph: {
+    title: "About Webli Studio",
+    description:
+      "Discover how Webli Studio builds expressive, motion-led websites for modern brands.",
+    url: "https://www.weblistudio.in/about",
+    siteName: "Webli Studio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Webli Studio – Motion First Web Development",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Webli Studio",
+    description:
+      "A motion-first MERN studio crafting modern, animated web experiences.",
+    images: ["/og-image.png"],
+  },
+};
+
 export default function AboutPage() {
   const pageRef = useRef(null);
 
@@ -15,11 +56,11 @@ export default function AboutPage() {
   const storyRef = useRef(null);
   const processRef = useRef(null);
   const beliefRef = useRef(null);
+  const founderRef = useRef(null);
   const ctaRef = useRef(null);
 
   useGSAP(
     () => {
-      /* PAGE HEADER */
       gsap.fromTo(
         headerRef.current.children,
         { y: 30, opacity: 0 },
@@ -37,16 +78,11 @@ export default function AboutPage() {
         }
       );
 
-      /* STORY SECTION */
       animateSection(storyRef.current);
-
-      /* PROCESS SECTION */
       animateSection(processRef.current);
-
-      /* BELIEF SECTION */
       animateSection(beliefRef.current);
+      animateSection(founderRef.current);
 
-      /* CTA */
       gsap.fromTo(
         ctaRef.current,
         { y: 20, opacity: 0 },
@@ -70,35 +106,31 @@ export default function AboutPage() {
     const heading = section.querySelector("h2");
     const cards = section.querySelectorAll(".animate-card");
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        once: true,
-      },
-    });
-
-    tl.fromTo(
-      heading,
-      { y: 20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      }
-    ).fromTo(
-      cards,
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.12,
-      },
-      "-=0.2"
-    );
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      })
+      .fromTo(
+        heading,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+      )
+      .fromTo(
+        cards,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.12,
+        },
+        "-=0.2"
+      );
   }
 
   const storyCards = [
@@ -155,22 +187,33 @@ export default function AboutPage() {
     },
   ];
 
+  const founderCards = [
+    {
+      title: "Rishabh Srivastava",
+      text:
+        "Founder of Webli Studio. A motion-focused full-stack developer building expressive, high-performance web experiences.",
+    },
+    {
+      title: "Why I Started Webli Studio",
+      text:
+        "Most websites worked fine — but felt empty. Webli Studio was born to bring motion, clarity and personality back into modern web design.",
+    },
+    {
+      title: "My Focus",
+      text:
+        "Crafting animated, conversion-focused websites using React, GSAP and the MERN stack for bold launches.",
+    },
+  ];
+
   const GradientCard = ({ children, gradient }) => (
-    <div
-      className={`animate-card rounded-3xl bg-gradient-to-br ${gradient} p-[1px] shadow-lg`}
-    >
-      <div className="rounded-3xl bg-black p-5 sm:p-6 h-full">
-        {children}
-      </div>
+    <div className={`animate-card rounded-3xl bg-gradient-to-br ${gradient} p-[1px] shadow-lg`}>
+      <div className="rounded-3xl bg-black p-5 sm:p-6 h-full">{children}</div>
     </div>
   );
 
   return (
-    <main
-      ref={pageRef}
-      className="relative bg-black py-16 sm:py-20 lg:py-28"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <main ref={pageRef} className="relative bg-black py-16 sm:py-20 lg:py-28">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HEADER */}
         <div ref={headerRef} className="mb-14">
@@ -187,24 +230,11 @@ export default function AboutPage() {
 
         {/* STORY */}
         <section ref={storyRef} className="mb-20">
-          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
-            Our Story
-          </h2>
-          <div className="relative grid md:grid-cols-3 gap-6">
-            <div
-            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
-            aria-hidden="true"
-          />
-            {storyCards.map((card) => (
-              <GradientCard
-                key={card.title}
-                gradient="from-yellow-100 via-yellow-300 to-white"
-              >
-                <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6 tracking-[0.09em]">Our Story</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {storyCards.map(card => (
+              <GradientCard key={card.title} gradient="from-yellow-100 via-yellow-300 to-white">
+                <h3 className="text-lg font-semibold text-white tracking-[0.09em]">{card.title}</h3>
                 <p className="mt-2 text-white/80">{card.text}</p>
               </GradientCard>
             ))}
@@ -213,24 +243,11 @@ export default function AboutPage() {
 
         {/* PROCESS */}
         <section ref={processRef} className="mb-20">
-          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
-            How We Build
-          </h2>
-          <div className="relative grid md:grid-cols-3 gap-6">
-            <div
-            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
-            aria-hidden="true"
-          />
-            {processCards.map((card) => (
-              <GradientCard
-                key={card.title}
-                gradient="from-pink-200 via-yellow-200 to-yellow-100"
-              >
-                <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6 tracking-[0.09em]">How We Build</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {processCards.map(card => (
+              <GradientCard key={card.title} gradient="from-pink-200 via-yellow-200 to-yellow-100">
+                <h3 className="text-lg font-semibold text-white tracking-[0.09em]">{card.title}</h3>
                 <p className="mt-2 text-white/80">{card.text}</p>
               </GradientCard>
             ))}
@@ -239,24 +256,24 @@ export default function AboutPage() {
 
         {/* BELIEFS */}
         <section ref={beliefRef} className="mb-20">
-          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
-            Why Webli Studio
-          </h2>
-          <div className="relative grid md:grid-cols-3 gap-6">
-            <div
-            className="absolute -top-6 -right-4 h-20 w-20 rounded-3xl bg-gradient-to-tr from-yellow-100 via-yellow-300 to-black opacity-80 blur-lg animate-[bounce_10s_ease-in-out_infinite_alternate]"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute bottom-0 -left-4 h-16 w-16 rounded-3xl bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-300 opacity-70 blur-lg animate-[bounce_12s_ease-in-out_infinite_alternate]"
-            aria-hidden="true"
-          />
-            {beliefCards.map((card) => (
-              <GradientCard
-                key={card.title}
-                gradient="from-blue-200 via-yellow-200 to-white"
-              >
-                <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6 tracking-[0.09em]">Why Webli Studio</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {beliefCards.map(card => (
+              <GradientCard key={card.title} gradient="from-blue-200 via-yellow-200 to-white">
+                <h3 className="text-lg font-semibold text-white tracking-[0.09em]">{card.title}</h3>
+                <p className="mt-2 text-white/80">{card.text}</p>
+              </GradientCard>
+            ))}
+          </div>
+        </section>
+
+        {/* FOUNDER */}
+        <section ref={founderRef} className="mb-24">
+          <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6 tracking-[0.09em]">About the Founder</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {founderCards.map(card => (
+              <GradientCard key={card.title} gradient="from-yellow-200 via-yellow-100 to-white">
+                <h3 className="text-lg font-semibold text-white tracking-[0.09em]">{card.title}</h3>
                 <p className="mt-2 text-white/80">{card.text}</p>
               </GradientCard>
             ))}
