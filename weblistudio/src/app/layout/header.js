@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
-import { Instagram, Github, Linkedin } from "lucide-react";
+import { InstagramIcon, GithubIcon, LinkedinIcon } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +46,7 @@ const Header = () => {
     gsap.set(headerRef.current, { opacity: 0, y: -20 });
 
     gsap.set(btnRef.current.children[0], { opacity: 0, x: "50%" });
-    gsap.set(btnRef.current.children[1], { opacity: 1, x: "0%" });
+    gsap.set(btnRef.current.children[1], { opacity: 0, x: "0%" });
 
     gsap.set([titleRef.current, paraRef.current], {
       autoAlpha: 0,
@@ -195,7 +195,7 @@ const Header = () => {
         <span className="absolute inset-0 flex items-center justify-center opacity-0">
           Close
         </span>
-        <span className="absolute inset-0 flex items-center justify-center">
+        <span className="absolute inset-0 flex items-center justify-center opacity-0">
           Menu
         </span>
       </div>
@@ -205,7 +205,7 @@ const Header = () => {
         ref={overlayRef}
         className={`fixed inset-0 bg-gradient-to-br from-black via-zinc-900 to-zinc-800 
         text-white flex items-center justify-center overflow-y-auto will-change-transform
-        z-[998] ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        z-[998] ${isOpen ? "pointer-events-auto" : "menu-overlay-hidden"}`}
       >
         <div className="h-full flex flex-col justify-center items-center px-6 md:px-16 gap-6 md:gap-10 text-center">
           <h1
@@ -242,10 +242,10 @@ const Header = () => {
           </div>
 
           <div className="flex gap-6">
-            <Instagram ref={addSocialRef} size={18} />
-            <Linkedin ref={addSocialRef} size={18} />
-            <Github ref={addSocialRef} size={18} />
-          </div>
+                          <a href="https://www.instagram.com/webli_studio/" target="_blank" className="text-purple-500 glow cursor-pointer"><InstagramIcon size={20} /></a>
+                          <a href="https://github.com/webli-studio" target="_blank" className="glow cursor-pointer"><GithubIcon size={20} /></a>
+                          <a href="https://www.linkedin.com/in/webli-studio-creative-web-development-agency-250a5336b/" target="_blank" className="text-blue-500 glow cursor-pointer"><LinkedinIcon size={20} /></a>
+                        </div>
 
           <footer ref={footerRef} className="text-sm">
             © {new Date().getFullYear()} Webli Studio. All rights reserved.
