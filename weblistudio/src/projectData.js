@@ -1,4 +1,12 @@
 export const projects = [
+  {
+    name: "Xvital",
+    niche: "Health & Fitness website",
+    description: "A modern, interactive website with integration of zoho mail and crm, smooth scrolling, and engaging visuals to showcase their services.",
+    image: "xvital.png",
+    url: "https://www.xvital.in",
+    year: "2026"
+  },
     {
       name: "Launch Haus",
       niche: "Business Development website",
