@@ -5,7 +5,7 @@ import { InstagramIcon, LinkedinIcon, GithubIcon, Coffee } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="border-t border-white/80 bg-black backdrop-blur-sm">
+    <footer className="border-t border-white/80 bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-7">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-3">

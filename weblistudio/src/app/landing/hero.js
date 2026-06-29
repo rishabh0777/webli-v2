@@ -30,12 +30,10 @@ export default function Hero() {
     gsap.set(lettersRef.current, { y: 50, opacity: 0 });
     gsap.set(taglineRef.current, { y: 50, opacity: 0 });
     gsap.set(cardRef.current, { y: 50, opacity: 0 });
-    gsap.set([blobA.current, blobB.current, blobC.current], { y: 0 });
+    // gsap.set([blobA.current, blobB.current, blobC.current], { y: 0 });
     gsap.set(buttonRef.current, { y: 40, opacity: 0 });
-  }, []);
 
-  // gsap animations on mount
-  useLayoutEffect(() => {
+      
     const tl = gsap.timeline({ delay: 0.8 });
 
     // Animate tag
@@ -107,19 +105,21 @@ export default function Hero() {
 
     
 
-    // Floating blobs animation
-    gsap.to([blobA.current, blobB.current, blobC.current], {
-      y: 20,
-      duration: 6,
-      ease: "sine.inOut",
-      yoyo: true,
-      repeat: -1,
-      stagger: {
-        each: 2,
-        from: "random",
-      },
-    });
+  //   // Floating blobs animation
+  //   gsap.to([blobA.current, blobB.current, blobC.current], {
+  //     y: 20,
+  //     duration: 6,
+  //     ease: "sine.inOut",
+  //     yoyo: true,
+  //     repeat: -1,
+  //     stagger: {
+  //       each: 2,
+  //       from: "random",
+  //     },
+  //   });
   }, []);
+
+
 
 
  
@@ -135,7 +135,7 @@ export default function Hero() {
       />
 
       {/* Floating gradient blobs background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      {/* <div className="pointer-events-none absolute inset-0 -z-10">
         <div
           ref={blobA}
           className="absolute -top-24 -left-10 h-56 w-56 sm:h-80 sm:w-80 rounded-full 
@@ -156,13 +156,13 @@ export default function Hero() {
           bg-gradient-to-br from-yellow-200/70 via-yellow-100/60 to-white/70 opacity-70 blur-2xl"
           aria-hidden="true"
         />
-      </div>
+      </div> */}
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-20 pb-16 sm:pb-20 lg:pb-24">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Hero text */}
           <div className="space-y-6 sm:space-y-7">
-            <div ref={tagRef} className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-3 py-2 shadow-sm shadow-slate-100/70 backdrop-blur opacity-0">
+            <div ref={tagRef} className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 via-yellow-300 to-white px-3 py-2 shadow-sm shadow-slate-100/70 opacity-0">
               <span className="inline-flex h-1.5 w-1.5 rounded-full bg-gradient-to-br from-yellow-300 via-pink-400 to-blue-500 animate-[pulse_1.5s_ease-in-out_infinite]"></span>
               <span className="text-xs font-medium text-black/90">
                 MERN + Animated Web Studio for Modern Brands
@@ -325,7 +325,7 @@ export default function Hero() {
                       </div>
                     </div>
                     <button onClick={()=>{
-                      window.open("https://www.launchhaus.in/", "_blank")
+                      window.open("https://www.xvital.in/", "_blank")
                     }} className="text-[0.7rem] sm:text-xs font-medium text-slate-800 underline underline-offset-2 decoration-slate-400 hover:text-slate-900 cursor-pointer">
                       Peek latest build →
                     </button>
