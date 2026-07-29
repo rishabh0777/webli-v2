@@ -13,7 +13,7 @@ export const projects = [
       description: "A sleek, modern site with smooth scrolling, interactive elements, and bold typography to showcase their services.",
       image: "launchhaus.png",
       url: "https://www.launchhaus.in",
-      year: "2025"
+      year: "2026"
     },
     {
       name: "Aathavan Films",
@@ -23,14 +23,7 @@ export const projects = [
       url: "https://aathavanfilms.vercel.app",
       year: "2025"
     },
-    {
-      name: "Jerdon Villa",
-      niche: "Villa website",
-      description: "An app-like site with interactive UI elements, smooth transitions, and immersive visuals to showcase the villa.",
-      image: "jerdon.png",
-      url: "https://jerdon.in",
-      year: "2025"
-    },
+    
     {
       name: "Lion's Den Cafe",
       niche: "Cafe website",
@@ -46,7 +39,15 @@ export const projects = [
       image: "sereneStays.png",
       url: "https://serene-stays.vercel.app",
       year: "2025"
-    }
+    },
+  {
+      name: "Jerdon Villa (Archived)",
+      niche: "Villa website",
+      description: "An app-like site with interactive UI elements, smooth transitions, and immersive visuals to showcase the villa.",
+      image: "jerdon.png",
+      url: "https://jerdon.in",
+      year: "2025"
+    },
 
 
   ]
