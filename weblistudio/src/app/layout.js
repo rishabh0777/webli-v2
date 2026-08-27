@@ -58,6 +58,37 @@ export const metadata = {
     follow: true,
   },
 
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        url: "/android-chrome-192x192.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "512x512",
+        url: "/android-chrome-512x512.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        url: "/favicon-16x16.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        url: "/favicon-32x32.png",
+      },
+    ],
+  },
+
   openGraph: {
     title: "Webli Studio — We Build. You Launch.",
     description:
@@ -72,12 +103,6 @@ export const metadata = {
         alt: "Webli Studio — Animated Web Development Studio",
       },
     ],
-    icons: {
-      icon: "/favicon.ico",
-      apple: "/apple-touch-icon.png",
-      chrome: ["/android-chrome-192x192.png", "/android-chrome-512x512.png"],
-      favicons: ["/favicon-16x16.png", "/favicon-32x32.png"],
-    },
     locale: "en_IN",
     type: "website",
   },
@@ -87,28 +112,30 @@ export const metadata = {
     title: "Webli Studio — We Build. You Launch.",
     description:
       "Modern MERN + GSAP animated websites crafted for startups and brands.",
-    images: [
-      "/og.png",
-      "/logo/primaryLogoWhite.svg",
-      "/logo/primaryLogoBlack.svg",
-    ],
+    images: ["/og.png"],
   },
 
   alternates: {
     canonical: "https://webli.vercel.app",
   },
+
+  verification: {
+    google: "JtjC0Spp1E4E7qkWm6b3CI6fpyxqbM4CT1FXrAwLR28",
+  },
 };
 
 
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#000000",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* ✅ Google site verification */}
-        <meta
-          name="google-site-verification"
-          content="JtjC0Spp1E4E7qkWm6b3CI6fpyxqbM4CT1FXrAwLR28"
-        />
       <body
         className={`${bangers.variable} ${poppins.variable} antialiased ovrflow-x-hidden`}
       >

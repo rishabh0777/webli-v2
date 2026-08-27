@@ -225,7 +225,7 @@ const Header = () => {
             engineering.
           </p>
 
-          <div className="flex gap-6 text-[0.7em] md:text-2xl font-bold">
+          <nav className="flex gap-6 text-[0.7em] md:text-2xl font-bold" aria-label="Main navigation">
             {["Home", "Services", "Portfolio", "About", "Contact"].map(
               (item, i) => (
                 <Link
@@ -239,12 +239,12 @@ const Header = () => {
                 </Link>
               )
             )}
-          </div>
+          </nav>
 
           <div className="flex gap-6">
-                          <a href="https://www.instagram.com/webli_studio/" target="_blank" className="text-purple-500 glow cursor-pointer"><InstagramIcon size={20} /></a>
-                          <a href="https://github.com/webli-studio" target="_blank" className="glow cursor-pointer"><GithubIcon size={20} /></a>
-                          <a href="https://www.linkedin.com/in/webli-studio-creative-web-development-agency-250a5336b/" target="_blank" className="text-blue-500 glow cursor-pointer"><LinkedinIcon size={20} /></a>
+                          <a href="https://www.instagram.com/webli_studio/" target="_blank" rel="noopener noreferrer" className="text-purple-500 glow cursor-pointer"><InstagramIcon size={20} /></a>
+                          <a href="https://github.com/webli-studio" target="_blank" rel="noopener noreferrer" className="glow cursor-pointer"><GithubIcon size={20} /></a>
+                          <a href="https://www.linkedin.com/in/webli-studio-creative-web-development-agency-250a5336b/" target="_blank" rel="noopener noreferrer" className="text-blue-500 glow cursor-pointer"><LinkedinIcon size={20} /></a>
                         </div>
 
           <footer ref={footerRef} className="text-sm">

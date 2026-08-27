@@ -21,8 +21,16 @@ export const metadata = {
     title: "Portfolio | Webli Studio",
     description:
       "A showcase of motion-led, interactive websites built by Webli Studio using modern frontend technologies.",
-    url: "https://webli.vercel.app/portfolio",
+    url: "/portfolio",
     siteName: "Webli Studio",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Webli Studio Portfolio",
+      },
+    ],
     type: "website",
   },
 
@@ -31,6 +39,11 @@ export const metadata = {
     title: "Portfolio | Webli Studio",
     description:
       "Explore animated, interactive web projects crafted by Webli Studio.",
+    images: ["/og.png"],
+  },
+
+  alternates: {
+    canonical: "/portfolio",
   },
 };
 

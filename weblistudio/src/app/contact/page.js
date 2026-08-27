@@ -20,8 +20,16 @@ export const metadata = {
     title: "Contact Webli Studio",
     description:
       "Get in touch with Webli Studio to build motion-first, high-performance websites for your brand or startup.",
-    url: "https://webli.vercel.app/contact",
+    url: "/contact",
     siteName: "Webli Studio",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact Webli Studio",
+      },
+    ],
     type: "website",
   },
 
@@ -30,40 +38,28 @@ export const metadata = {
     title: "Contact Webli Studio",
     description:
       "Start your web project with Webli Studio — motion-first MERN websites built for modern brands.",
+    images: ["/og.png"],
+  },
+
+  alternates: {
+    canonical: "/contact",
   },
 };
 
 /* ============================
-   JSON-LD — LOCAL BUSINESS
+   JSON-LD — ORGANIZATION
 ============================ */
-const localBusinessSchema = {
+const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "Organization",
   name: "Webli Studio",
+  url: "https://webli.vercel.app",
   description:
     "Webli Studio is a motion-first MERN web development studio creating animated, high-performance websites for startups and modern brands.",
-  url: "https://webli.vercel.app",
-  areaServed: {
-    "@type": "Country",
-    name: "India",
-  },
-  serviceOffered: [
-    {
-      "@type": "Service",
-      name: "Animated Landing Pages",
-    },
-    {
-      "@type": "Service",
-      name: "Interactive Websites",
-    },
-    {
-      "@type": "Service",
-      name: "MERN Stack Web Applications",
-    },
-    {
-      "@type": "Service",
-      name: "Startup MVP Development",
-    },
+  sameAs: [
+    "https://www.instagram.com/webli_studio/",
+    "https://www.linkedin.com/in/webli-studio-creative-web-development-agency-250a5336b/",
+    "https://github.com/webli-studio",
   ],
   contactPoint: {
     "@type": "ContactPoint",
@@ -79,7 +75,7 @@ export default function Contact() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(localBusinessSchema),
+          __html: JSON.stringify(organizationSchema),
         }}
       />
 

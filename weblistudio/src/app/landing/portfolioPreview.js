@@ -76,12 +76,6 @@ export default function PortfolioPreview() {
       aria-labelledby="portfolio-preview-heading"
       className="relative py-12 sm:py-16 lg:py-20"
     >
-      {/* INVISIBLE PORTFOLIO SEO SIGNAL */}
-      <meta
-        name="keywords"
-        content="Webli Studio portfolio, animated websites, MERN projects, GSAP animation projects, startup websites India"
-      />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div
           ref={headerRef}

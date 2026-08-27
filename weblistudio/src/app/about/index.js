@@ -8,47 +8,6 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ============================
-   SEO METADATA (SERVER-SAFE)
-============================ */
-export const metadata = {
-  title: "About Webli Studio",
-  description:
-    "Learn about Webli Studio, our motion-first approach, and the founder behind our animated, high-performance web experiences.",
-  keywords: [
-    "Webli Studio",
-    "about Webli Studio",
-    "motion first web design",
-    "GSAP website",
-    "MERN web agency",
-    "React web developer",
-    "Rishabh Srivastava Webli",
-  ],
-  openGraph: {
-    title: "About Webli Studio",
-    description:
-      "Discover how Webli Studio builds expressive, motion-led websites for modern brands.",
-    url: "https://www.weblistudio.in/about",
-    siteName: "Webli Studio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Webli Studio – Motion First Web Development",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Webli Studio",
-    description:
-      "A motion-first MERN studio crafting modern, animated web experiences.",
-    images: ["/og-image.png"],
-  },
-};
-
 export default function AboutPage() {
   const pageRef = useRef(null);
 
@@ -58,6 +17,37 @@ export default function AboutPage() {
   const beliefRef = useRef(null);
   const founderRef = useRef(null);
   const ctaRef = useRef(null);
+
+  function animateSection(section) {
+    const heading = section.querySelector("h2");
+    const cards = section.querySelectorAll(".animate-card");
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      })
+      .fromTo(
+        heading,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+      )
+      .fromTo(
+        cards,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.12,
+        },
+        "-=0.2"
+      );
+  }
 
   useGSAP(
     () => {
@@ -101,37 +91,6 @@ export default function AboutPage() {
     },
     { scope: pageRef }
   );
-
-  function animateSection(section) {
-    const heading = section.querySelector("h2");
-    const cards = section.querySelectorAll(".animate-card");
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-          once: true,
-        },
-      })
-      .fromTo(
-        heading,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
-      )
-      .fromTo(
-        cards,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.12,
-        },
-        "-=0.2"
-      );
-  }
 
   const storyCards = [
     {

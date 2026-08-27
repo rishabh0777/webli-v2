@@ -64,12 +64,6 @@ export default function CTA() {
       aria-labelledby="cta-heading"
       className="relative py-12 sm:py-16 lg:py-20 bg-black"
     >
-      {/* INVISIBLE CONVERSION + LOCAL SEO SIGNAL */}
-      <meta
-        name="keywords"
-        content="Webli Studio contact, hire web developer, animated website project, MERN web development India"
-      />
-
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={cardRef}

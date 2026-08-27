@@ -22,8 +22,16 @@ export const metadata = {
     title: "Web Development Services | Webli Studio",
     description:
       "Motion-first web development services including animated landing pages, interactive websites, dashboards, and scalable MERN applications.",
-    url: "https://webli.vercel.app/services",
+    url: "/services",
     siteName: "Webli Studio",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Webli Studio Web Development Services",
+      },
+    ],
     type: "website",
   },
 
@@ -32,6 +40,11 @@ export const metadata = {
     title: "Web Development Services | Webli Studio",
     description:
       "Motion-first MERN web development services built for startups and modern brands.",
+    images: ["/og.png"],
+  },
+
+  alternates: {
+    canonical: "/services",
   },
 };
 

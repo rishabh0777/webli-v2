@@ -59,6 +59,7 @@ export default function PortfolioCard({ project }) {
           <Link
             href={project.url}
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 font-medium group-hover:underline"
           >
             <span className="group-hover:translate-x-0.5 transition-transform duration-150">

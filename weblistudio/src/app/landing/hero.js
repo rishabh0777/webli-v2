@@ -128,12 +128,6 @@ export default function Hero() {
       aria-labelledby="hero-heading"
       className="relative overflow-hidden pt-[8vh] md:pt-5"
     >
-      {/* INVISIBLE LOCAL SEO SIGNAL */}
-      <meta
-        name="description"
-        content="Webli Studio is an animated MERN web development studio serving startups and modern brands across India."
-      />
-
       {/* Floating gradient blobs background */}
       {/* <div className="pointer-events-none absolute inset-0 -z-10">
         <div

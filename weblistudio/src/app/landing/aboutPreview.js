@@ -108,12 +108,6 @@ export default function AboutPreview() {
       aria-labelledby="about-preview-heading"
       className="relative py-12 sm:py-16 lg:py-20"
     >
-      {/* INVISIBLE LOCAL SEO SIGNAL */}
-      <meta
-        name="keywords"
-        content="Webli Studio, MERN web development, animated websites, startup websites, modern web studio India"
-      />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <div className="mb-8 sm:mb-10">
