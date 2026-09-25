@@ -31,28 +31,57 @@ export const metadata = {
     "Webli Studio is a modern MERN-stack web development studio building animated, high-performance, SEO-optimized websites for startups and brands.",
 
   keywords: [
-    "Webli Studio",
-    "web development agency",
-    "MERN stack developers",
-    "React and Next.js agency",
-    "animated websites",
-    "GSAP animation websites",
-    "Indian web development studio",
-    "SEO-optimized websites",
-    "modern web design",
-    "startup websites",
-    "brand websites",
-    "high-performance web development",
-    "custom web solutions",
-    "responsive web design",
-    "e-commerce development",
-    "progressive web apps",
-    "UI/UX design services",
-    "website maintenance and support",
-    "digital presence solutions",
-    "full-stack web development",
-  ],
+  // Brand Keywords
+  "Webli",
+  "Webli Studio",
+  "Webli Agency",
+  "Webli India",
+  "Webli Web Development",
+  "Webli Web Development Agency",
+  "Webli Creative Agency",
+  "Webli Digital Agency",
 
+  // Main Services
+  "web development",
+  "web design",
+  "website development",
+  "web development agency",
+  "website development company",
+  "custom web development",
+  "full-stack web development",
+
+  // Technology
+  "React",
+  "Next.js",
+  "MERN",
+  "GSAP",
+  "React development agency",
+  "Next.js development agency",
+  "MERN stack developers",
+  "GSAP animation websites",
+
+  // Specialization
+  "animated websites",
+  "interactive websites",
+  "modern websites",
+  "high-performance websites",
+  "responsive web design",
+  "SEO optimized websites",
+
+  // Business Intent
+  "startup websites",
+  "business websites",
+  "brand websites",
+  "restaurant website development",
+  "cafe website development",
+  "e-commerce development",
+
+  // Location
+  "web development agency India",
+  "website development company India",
+  "React developers India",
+  "Next.js developers India",
+]
   robots: {
     index: true,
     follow: true,
