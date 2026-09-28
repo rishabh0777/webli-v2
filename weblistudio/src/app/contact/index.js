@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -190,8 +191,13 @@ export default function ContactPage() {
                 {loading ? "Sending..." : "Send message →"}
               </button>
 
-              <p className="mt-3 text-xs text-white/50">
-                We usually reply within 24 hours.
+              <p className="mt-3 max-w-lg mx-auto text-xs leading-5 text-white/40">
+                We use the information you provide to review your project enquiry and
+                respond to you. By submitting this form, you acknowledge our{" "}
+                <Link href="/privacy-policy" className="text-white/70 underline underline-offset-2 hover:text-white transition">
+                  Privacy Policy
+                </Link>
+                .
               </p>
             </div>
           </form>
