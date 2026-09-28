@@ -81,7 +81,7 @@ export const metadata = {
   "website development company India",
   "React developers India",
   "Next.js developers India",
-]
+],
   robots: {
     index: true,
     follow: true,
