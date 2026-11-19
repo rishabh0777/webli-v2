@@ -146,11 +146,7 @@ export const metadata = {
 
   alternates: {
     canonical: "https://webli.vercel.app",
-  },
-
-  verification: {
-    google: "JtjC0Spp1E4E7qkWm6b3CI6fpyxqbM4CT1FXrAwLR28",
-  },
+  }
 };
 
 
