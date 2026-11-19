@@ -31,12 +31,7 @@ import CTA from "./landing/CTA";
 export default function Home() {
   return (
     <main className="relative w-screen bg-black overflow-x-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema),
-        }}
-      />
+      
       <Hero />
       <AboutPreview />
       <ServicePreview />
